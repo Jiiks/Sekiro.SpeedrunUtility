@@ -14,7 +14,7 @@ namespace SekiroSpeedrunUtil {
 
         private readonly int _bytesToRead;
         private byte[] _value;
-        private string _name;
+        private readonly string _name;
 
         public EventHandler<MemoryThreadEventArgs> ValueChanged;
 
@@ -59,7 +59,6 @@ namespace SekiroSpeedrunUtil {
                 IsBackground = true
             };
             _thread.Start();
-            
         }
 
         public void Stop() => _stopped = true;
@@ -68,8 +67,7 @@ namespace SekiroSpeedrunUtil {
 
     }
 
-    public class MemoryThreadEventArgs : EventArgs
-    {
+    public class MemoryThreadEventArgs : EventArgs {
         public byte[] Bytes;
     }
 
