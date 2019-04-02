@@ -1,0 +1,50 @@
+﻿[
+    {  
+        "Name": "Hirata Estate",
+        "Id0": 0x0A,
+        "Id1": 0X00
+    },
+    {  
+        "Name": "Ashina Outskirts",
+        "Id0": 0x0B,
+        "Id1": 0x00
+    },
+    {  
+        "Name": "Ashina Castle",
+        "Id0": 0x0B,
+        "Id1": 0x01,
+        "Coords": {
+            "xyz":  [-202.63, -26.42, 176.73]
+        }
+    },
+    {  
+        "Name": "Tutorial",
+        "Id0": 0x0B,
+        "Id1": 0x02
+    },
+    {  
+        "Name": "Abandoned Dungeon",
+        "Id0": 0x0D,
+        "Id1": 0x00
+    },
+    {  
+        "Name": "Ashina Depths",
+        "Id0": 0x0F,
+        "Id1": 0x00
+    },
+    {  
+        "Name": "Sunken Valley",
+        "Id0": 0x11,
+        "Id1": 0x00
+    },
+    {  
+        "Name": "Senpou Temple",
+        "Id0": 0x14,
+        "Id1": 0x00
+    },
+    {  
+        "Name": "Fountainhead Palace",
+        "Id0": 0x19,
+        "Id1": 0x00
+    }
+]

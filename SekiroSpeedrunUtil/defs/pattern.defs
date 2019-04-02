@@ -1,0 +1,11 @@
+﻿[
+    {
+        "name": "PlayerDataBaseSig",
+        "patternstring": "48 8B 05 ?? ?? ?? ?? 48 8B 48 08 0F B7 51 10 48 8B CE Add 3 TraceRelative"
+    },
+    {
+        "name": "SomeThingSig",
+        "patternstring": "48 8B 05 ?? ?? ?? ?? 4C 8B 60 08 4C 89 64 24 40 4D 85 E4 Add 3"
+    }
+
+]

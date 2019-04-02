@@ -1,0 +1,126 @@
+﻿[
+    {
+        "name": "PlayerNoDead",
+        "category": "PlayerFlags",
+        "default": 0
+    },
+    {
+        "name": "PlayerNoGoodsConsume",
+        "category": "PlayerFlags",
+        "default": 0
+    },
+    {
+        "name": "PlayerNoResourceItemConsume",
+        "category": "PlayerFlags",
+        "default": 0
+    },
+    {
+        "name": "PlayerNoRevivalConsume",
+        "category": "PlayerFlags",
+        "default": 0
+    },
+    {
+        "name": "PlayerHide",
+        "category": "PlayerFlags",
+        "default": 0
+    },
+    {
+        "name": "AllNoDead",
+        "category": "AllFlags",
+        "default": 0
+    },
+    {
+        "name": "AllNoDamage",
+        "category": "AllFlags",
+        "default": 0
+    },
+    {
+        "name": "AllNoHit",
+        "category": "AllFlags",
+        "default": 0
+    },
+    {
+        "name": "AllNoAttack",
+        "category": "AllFlags",
+        "default": 0
+    },
+    {
+        "name": "AllNoUpdateAi",
+        "category": "AllFlags",
+        "default": 0
+    },
+    {
+        "name": "AllNoMove",
+        "category": "AllFlags",
+        "default": 0
+    },
+    {
+        "name": "AllNoStaminaConsume",
+        "category": "AllFlags",
+        "default": 0
+    },
+    {
+        "name": "RenderWorld",
+        "text": "Render World",
+        "category": "RenderFlags",
+        "default": 1
+    },
+    {
+        "name": "RenderMobs",
+        "text": "Render Mobs",
+        "category": "RenderFlags",
+        "default": 1
+    },
+    {
+        "name": "RenderObjects",
+        "text": "Render Objects",
+        "category": "RenderFlags",
+        "default": 1
+    },
+    {
+        "name": "RenderEffects",
+        "text": "Render Effects",
+        "category": "RenderFlags",
+        "default": 1
+    },
+    {
+        "name": "DebugRender0",
+        "category": "RenderFlags",
+        "default": 0 
+    },
+    {
+        "name": "DebugRender1",
+        "category": "RenderFlags",
+        "default": 0
+    },
+    {
+        "name": "DebugRender2",
+        "category": "RenderFlags",
+        "default": 0
+    },
+    {
+        "name": "DebugRender3",
+        "category": "RenderFlags",
+        "default": 0
+    },
+    {
+        "name": "DebugRender4",
+        "category": "RenderFlags",
+        "default": 0
+    },
+    {
+        "name": "DebugRender5",
+        "category": "RenderFlags",
+        "default": 0
+    },
+    {
+        "name": "DebugRender6",
+        "category": "RenderFlags",
+        "default": 0
+    },
+    {
+        "name": "DebugRender7",
+        "category": "RenderFlags",
+        "default": 0
+    }
+]

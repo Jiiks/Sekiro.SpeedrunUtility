@@ -1,0 +1,397 @@
+﻿[
+    {
+        "name": "Pellet",
+        "id1": 0xB0000BCC,
+        "id2": 0x40000BCC
+    },
+    {
+        "name": "Healing Gourd",
+        "id1": 0xB0000BB8,
+        "id2": 0x40000BB8
+    },
+    {
+        "name": "Contact Medicine",
+        "id1": 0xB0000CB2,
+        "id2": 0x40000CB2
+    },
+    {
+        "name": "Eel Liver",
+        "id1": 0xB0000C9E,
+        "id2": 0x40000C9E
+    },
+    {
+        "name": "Fistful of Ash",
+        "id1": 0xB0000DB6,
+        "id2": 0x40000DB6
+    },
+    {
+        "name": "Snap Seed",
+        "id1": 0xB0000DCA,
+        "id2": 0x40000DCA
+    },
+    {
+        "name": "Homeward Idol",
+        "id1": 0xB0000F8C,
+        "id2": 0x40000F8C
+    },
+    {
+        "name": "Divine Grass",
+        "id1": 0xB0000BE0,
+        "id2": 0x40000BE0
+    },
+    {
+        "name": "Ceremonial Tanto",
+        "id1": 0xB0000ED8,
+        "id2": 0x40000ED8
+    },
+    {
+        "name": "Dragon's Blood Droplet",
+        "id1": 0xB00015E0,
+        "id2": 0x400015E0
+    },
+    {
+        "name": "Bundled Jizo Statue",
+        "id1": 0xB0000E88,
+        "id2": 0x40000E88
+    },
+    {
+        "name": "Jinza's Jizo Statue",
+        "id1": 0xB0000E89,
+        "id2": 0x40000E89
+    },
+    {
+        "name": "Withered Red Gourd",
+        "id1": 0xB0000CEE,
+        "id2": 0x40000CEE
+    },
+    {
+        "name": "Mottled Purple Gourd",
+        "id1": 0xB0000CF8,
+        "id2": 0x40000CF8
+    },
+    {
+        "name": "Antidote Powder",
+        "id1": 0xB0000C80,
+        "id2": 0x40000C80
+    },
+    {
+        "name": "Dousing Powder",
+        "id1": 0xB0000C8A,
+        "id2": 0x40000C8A
+    },
+    {
+        "name": "Ministry Dousing Powder",
+        "id1": 0xB0000C8B,
+        "id2": 0x40000C8B
+    },
+    {
+        "name": "Pacifying Agent",
+        "id1": 0xB0000C94,
+        "id2": 0x40000C94
+    },
+    {
+        "name": "Ako's Spiritfall",
+        "id1": 0xB0000D16,
+        "id2": 0x40000D16
+    },
+    {
+        "name": "Yashariku's Spiritfall",
+        "id1": 0xB0000D20,
+        "id2": 0x40000D20
+    },
+    {
+        "name": "Ako's Sugar",
+        "id1": 0xB0000D48,
+        "id2": 0x40000D48
+    },
+    {
+        "name": "Ungo's Sugar",
+        "id1": 0xB0000D5C,
+        "id2": 0x40000D5C
+    },
+    {
+        "name": "Gokan's Sugar",
+        "id1": 0xB0000D66,
+        "id2": 0x40000D66
+    },
+    {
+        "name": "Gachiin's Sugar",
+        "id1": 0xB0000D70,
+        "id2": 0x40000D70
+    },
+    {
+        "name": "Yashariku's Sugar",
+        "id1": 0xB0000D52,
+        "id2": 0x40000D52
+    },
+    {
+        "name": "Mibu Balloon of Wealth",
+        "id1": 0xB0000E10,
+        "id2": 0x40000E10
+    },
+    {
+        "name": "Mibu Possession Balloon",
+        "id1": 0xB0000E24,
+        "id2": 0x40000E24
+    },
+    {
+        "name": "Mibu Balloon of Spirit",
+        "id1": 0xB0000E2E,
+        "id2": 0x40000E2E
+    },
+    {
+        "name": "Mibu Balloon of Soul",
+        "id1": 0xB0000E1A,
+        "id2": 0x40000E1A
+    },
+    {
+        "name": "Divine Confetti",
+        "id1": 0xB0000D7A,
+        "id2": 0x40000D7A
+    },
+    {
+        "name": "Red Lump",
+        "id1": 0xB0000BEB,
+        "id2": 0x40000BEB
+    },
+    {
+        "name": "Ceramic Shard",
+        "id1": 0xB0000DAC,
+        "id2": 0x40000DAC
+    },
+    {
+        "name": "Oil",
+        "id1": 0xB0000DC0,
+        "id2": 0x40000DC0
+    },
+    {
+        "name": "Nightjar Monocular",
+        "id1": 0xB0000F3C,
+        "id2": 0x40000F3C
+    },
+    {
+        "name": "Bite Down",
+        "id1": 0xB0000CDA,
+        "id2": 0x40000CDA
+    },
+    {
+        "name": "Illusive Hall Bell",
+        "id1": 0xB0000F96,
+        "id2": 0x40000F96
+    },
+    {
+        "name": "Light Coin Purse",
+        "id1": 0xB0000E74,
+        "id2": 0x40000E74
+    },
+    {
+        "name": "Heavy Coin Purse",
+        "id1": 0xB0000E78,
+        "id2": 0x40000E78
+    },
+    {
+        "name": "Bulging Coin Purse",
+        "id1": 0xB0000E7C,
+        "id2": 0x40000E7C
+    },
+    {
+        "name": "Loaded Shuriken",
+        "id1": 0x8080054D,
+        "id2": 0x00011170
+    },
+    {
+        "name": "Spinning Shuriken",
+        "id1": 0x80800574,
+        "id2": 0x000111D4
+    },
+    {
+        "name": "Gouging Top",
+        "id1": 0x8080059B,
+        "id2": 0x00011238
+    },
+    {
+        "name": "Phantom Kunai",
+        "id1": 0x808005A1,
+        "id2": 0x0001129C
+    },
+    {
+        "name": "Sen Throw",
+        "id1": 0x808005A3,
+        "id2": 0x00011300
+    },
+    {
+        "name": "Lazulite Shuriken",
+        "id1": 0x808005A7,
+        "id2": 0x00011364
+    },
+    {
+        "name": "Loaded Axe",
+        "id1": 0x80800554,
+        "id2": 0x00011D28
+    },
+    {
+        "name": "Spring-load Axe",
+        "id1": 0x80800576,
+        "id2": 0x00011D8C
+    },
+    {
+        "name": "Sparking Axe",
+        "id1": 0x8080057F,
+        "id2": 0x00011DF0
+    },
+    {
+        "name": "Lazulite Axe",
+        "id1": 0x808005C1,
+        "id2": 0x00011E54
+    },
+    {
+        "name": "Loaded Spear",
+        "id1": 0x80800573,
+        "id2": 0x000130B0
+    },
+    {
+        "name": "Loaded Spear Thrust type",
+        "id1": 0x80800597,
+        "id2": 0x00013114
+    },
+    {
+        "name": "Loaded Spear Cleave type",
+        "id1": 0x80800599,
+        "id2": 0x00013178
+    },
+    {
+        "name": "Spiral Spear",
+        "id1": 0x8080059D,
+        "id2": 0x000131DC
+    },
+    {
+        "name": "Leaping Flame",
+        "id1": 0x808005B9,
+        "id2": 0x00013240
+    },
+    {
+        "name": "Sabimaru",
+        "id1": 0x80800578,
+        "id2": 0x000124F8
+    },
+    {
+        "name": "Improved Sabimaru",
+        "id1": 0x80800579,
+        "id2": 0x0001255C
+    },
+    {
+        "name": "Piercing Sabimaru",
+        "id1": 0x808005A9,
+        "id2": 0x000125C0
+    },
+    {
+        "name": "Lazulite Sabimaru",
+        "id1": 0x808005AB,
+        "id2": 0x00012624
+    },
+    {
+        "name": "Loaded Umbrella",
+        "id1": 0x80800594,
+        "id2": 0x000128E0
+    },
+    {
+        "name": "Loaded Umbrella - Magnet",
+        "id1": 0x808005B1,
+        "id2": 0x00012944
+    },
+    {
+        "name": "Phoenix's Lilac Umbrella",
+        "id1": 0x808005B3,
+        "id2": 0x00012A0C
+    },
+    {
+        "name": "Suzaku's Lotus Umbrella",
+        "id1": 0x808005BD,
+        "id2": 0x000129A8
+    },
+    {
+        "name": "Shinobi Firecracker",
+        "id1": 0x80800551,
+        "id2": 0x00011558
+    },
+    {
+        "name": "Spring-load Firecracker",
+        "id1": 0x8080055D,
+        "id2": 0x000115BC
+    },
+    {
+        "name": "Long Spark",
+        "id1": 0x8080056E,
+        "id2": 0x00011620
+    },
+    {
+        "name": "Purple Fume Spark",
+        "id1": 0x80800592,
+        "id2": 0x00011684
+    },
+    {
+        "name": "Flame Vent",
+        "id1": 0x80800550,
+        "id2": 0x00011940
+    },
+    {
+        "name": "Spring-load Flame Vent",
+        "id1": 0x808005AF,
+        "id2": 0x000119A4
+    },
+    {
+        "name": "Okinaga's Flame Vent",
+        "id1": 0x808005B7,
+        "id2": 0x00011A08
+    },
+    {
+        "name": "Lazulite Sacred Flame",
+        "id1": 0x808005BF,
+        "id2": 0x00011A6C
+    },
+    {
+        "name": "Mist Raven",
+        "id1": 0x80800558,
+        "id2": 0x00012110
+    },
+    {
+        "name": "Aged Feather Mist Raven",
+        "id1": 0x8080059F,
+        "id2": 0x00012174
+    },
+    {
+        "name": "Great Feather Mist Raven",
+        "id1": 0x808005A5,
+        "id2": 0x000121D8
+    },
+    {
+        "name": "Divine Abduction",
+        "id1": 0x8080056B,
+        "id2": 0x00012CC8
+    },
+    {
+        "name": "Double Divine Abduction",
+        "id1": 0x8080056C,
+        "id2": 0x00012D2C
+    },
+    {
+        "name": "Golden Vortex",
+        "id1": 0x808005BB,
+        "id2": 0x00012D90
+    },
+    {
+        "name": "Finger Whistle",
+        "id1": 0x8080058D,
+        "id2": 0x00013498
+    },
+    {
+        "name": "Mountain Echo",
+        "id1": 0x808005AD,
+        "id2": 0x000134FC
+    },
+    {
+        "name": "Malcontent",
+        "id1": 0x808005B5,
+        "id2": 0x00013560
+    }
+]

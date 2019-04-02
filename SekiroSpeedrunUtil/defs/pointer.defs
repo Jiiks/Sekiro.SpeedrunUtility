@@ -1,0 +1,194 @@
+﻿[
+    {
+        "name": "LastCommutedIdol",
+        "base": 0x143B49D10,
+        "offsets": [ 0xB4C ],
+        "type": "static"
+    },
+    {
+        "name": "RenderWorld",
+        "base": 0x1439007C8,
+        "offsets": [],
+        "type": "static"
+    },
+    {
+        "name": "RenderMobs",
+        "base": 0x1439007CA,
+        "offsets": [],
+        "type": "static"
+    },
+    {
+        "name": "RenderObjects",
+        "base": 0x1439007C9,
+        "offsets": [],
+        "type": "static"
+    },
+    {
+        "name": "RenderEffects",
+        "base": 0x1439007CB,
+        "offsets": [],
+        "type": "static"
+    },
+    {
+        "name": "DebugRender0",
+        "base": 0x143B65BC0,
+        "offsets": [],
+        "type": "static"
+    },
+    {
+        "name": "DebugRender1",
+        "base": 0x143B65BC1,
+        "offsets": [],
+        "type": "static"
+    },
+    {
+        "name": "DebugRender2",
+        "base": 0x143B65BC2,
+        "offsets": [],
+        "type": "static"
+    },
+    {
+        "name": "DebugRender3",
+        "base": 0x143B65BC5,
+        "offsets": [],
+        "type": "static"
+    },
+    {
+        "name": "DebugRender4",
+        "base": 0x143B65BC6,
+        "offsets": [],
+        "type": "static"
+    },
+    {
+        "name": "DebugRender5",
+        "base": 0x143B65BC7,
+        "offsets": [],
+        "type": "static"
+    },
+    {
+        "name": "DebugRender6",
+        "base": 0x143B65BC8,
+        "offsets": [],
+        "type": "static"
+    },
+    {
+        "name": "DebugRender7",
+        "base": 0x143B65BC9,
+        "offsets": [],
+        "type": "static"
+    },
+    {
+        "name": "Inventory",
+        "base": 0x143B47CF0,
+        "offsets": [ 0x8, 0xA30 ],
+        "type": "static"
+    },
+    {
+        "name":  "GameState",
+        "base": 0x143B49D10,
+        "offsets": [ 0xBE8 ],
+        "type": "static"
+    },
+    {
+        "name": "IGT",
+        "base": 0x143B47CF0,
+        "offsets": [ 0x9C ],
+        "type": "static"
+    },
+    {
+        "name": "LastIdol",
+        "base": 0x143B67DF0,
+        "offsets": [ 0x88, 0x1FF8, 0x18, 0x130 ],
+        "type": "static"
+    },
+    {
+        "name": "PlayerPosition",
+        "base": 0x143B67DF0,
+        "offsets": [ 0x48, 0x28, 0x80 ],
+        "type": "static"
+    },
+    {
+        "name": "PlayerStats",
+        "base": 0x143B67DF0,
+        "offsets": [ 0x88, 0x1FF8, 0x18, 0x130 ],
+        "type": "static"
+    },
+    {
+        "name": "NoDeath",
+        "base": 0x143B67F8C,
+        "offsets": [],
+        "type": "static"
+    }, 
+    {
+        "name": "PlayerNoDead",
+        "base": 0x143B67F8C,
+        "offsets": [],
+        "type": "static"
+    },
+    {
+        "name": "PlayerNoGoodsConsume",
+        "base": 0x143b67f59,
+        "offsets": [],
+        "type": "static"
+    },
+    {
+        "name": "PlayerNoResourceItemConsume",
+        "base": 0x143b67f5a,
+        "offsets": [],
+        "type": "static"
+    },
+    {
+        "name": "PlayerNoRevivalConsume",
+        "base": 0x143B67F5B,
+        "offsets": [],
+        "type": "static"
+    },
+    {
+        "name": "PlayerHide",
+        "base": 0x143B67F5F,
+        "offsets": [],
+        "type": "static"
+    },
+    {
+        "name": "AllNoDead",
+        "base": 0x143B67F61,
+        "offsets": [],
+        "type": "static"
+    },
+    {
+        "name": "AllNoDamage",
+        "base": 0x143B67F62,
+        "offsets": [],
+        "type": "static"
+    },
+    {
+        "name": "AllNoHit",
+        "base": 0x143B67F63,
+        "offsets": [],
+        "type": "static"
+    },
+    {
+        "name": "AllNoAttack",
+        "base": 0x143B67F64,
+        "offsets": [],
+        "type": "static"
+    },
+    {
+        "name": "AllNoUpdateAi",
+        "base": 0x143B67F66,
+        "offsets": [],
+        "type": "static"
+    },
+    {
+        "name": "AllNoMove",
+        "base": 0x143B67F65,
+        "offsets": [],
+        "type": "static"
+    },
+    {
+        "name": "AllNoStaminaConsume",
+        "base": 0x143B67F6D,
+        "offsets": [],
+        "type": "static"
+    }
+]  

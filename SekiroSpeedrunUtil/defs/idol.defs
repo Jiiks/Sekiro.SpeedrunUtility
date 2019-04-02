@@ -1,0 +1,442 @@
+﻿[
+    {
+        "Name": "Dilapidated Temple",
+        "AreaName": "Ashina Outskirts",
+        "Id": 1102950,
+        "Coords": {
+            "xyz": [ 138.41, -50.99, -158.24 ]
+        }
+    },
+    {
+        "Name": "Ashina Outskirt",
+        "AreaName": "Ashina Outskirts",
+        "Id": 1102956,
+        "Coords": {
+            "xyz": [ 103.98, -31.48, -62.08 ]
+        }
+    },
+    {
+        "Name": "Outskirts Wall - Gate Path",
+        "AreaName": "Ashina Outskirts",
+        "Id": 1102951,
+        "Coords": {
+            "xyz": [ 161.22, -29.01, 23.00 ]
+        }
+    },
+    {
+        "Name": "Outskirts Wall - Stairway",
+        "AreaName": "Ashina Outskirts",
+        "Id": 1102952,
+        "Coords": {
+            "xyz": [ 197.45, -48.02, 150.72 ]
+        }
+    },
+    {
+        "Name": "Underbridge Valley",
+        "AreaName": "Ashina Outskirts",
+        "Id": 1102953,
+        "Coords": {
+            "xyz": [ 43.31, -60.20, 137.84 ]
+        }
+    },
+    { 
+        "Name": "Ashina Castle Gate Fortress",
+        "AreaName": "Ashina Outskirts",
+        "Id": 1102954,
+        "Coords": {
+            "xyz": [ -29.45, -74.27, -31.64 ]
+        }
+    },
+    {
+        "Name": "Ashina Castle Gate",
+        "AreaName": "Ashina Outskirts",
+        "Id": 1102955,
+        "Coords": {
+            "xyz": [ -174.44, -69.05, 68.21 ]
+        }
+    },
+    {
+        "Name": "Flames of Hatred",
+        "AreaName": "Ashina Outskirts",
+        "Id": 1102957 ,
+        "Coords": {
+            "xyz": [ -122.40, -71.82, -1.06 ]
+        }
+    },
+    {
+        "Name": "Ashina Castle",
+        "AreaName": "Ashina Castle",
+        "Id": 1112950,
+        "Coords": {
+            "xyz": [-202.63, -26.42, 176.73]
+        }
+    },
+    {
+        "Name": "Upper Tower - Antechamber",
+        "AreaName": "Ashina Castle",
+        "Id": 1112951,
+        "Coords": {
+            "xyz": [-82.89, 28.23, 254.30]
+        }
+    },
+    {
+        "Name": "Castle Tower Lookout",
+        "AreaName": "Ashina Castle",
+        "Id": 1112952,
+        "Coords": {
+            "xyz": [-120.34, 54.08, 234.23]
+        }
+    },
+    {
+        "Name": "Upper Tower - Kuro's Room",
+        "AreaName": "Ashina Castle",
+        "Id": 1112953,
+        "Coords": {
+            "xyz": [-108.75, 46.66, 227.53]
+        }
+    },
+    {
+        "Name": "Great Serpent Shrine",
+        "AreaName": "Ashina Castle",
+        "Id": 1112954,
+        "Coords": {
+            "xyz": [60.36, -31.23, 360.44]
+        }
+    },
+    {
+        "Name": "Abandoned Dungeon Entrance",
+        "AreaName": "Ashina Castle",
+        "Id": 1112955,
+        "Coords": {
+            "xyz": [-336.92, -32.14, 252.71]
+        }
+    },
+    {
+        "Name": "Old Grave",
+        "AreaName": "Ashina Castle",
+        "Id": 1112956,
+        "Coords": {
+            "xyz": [-47.09, -2.62, 188.63]
+        }
+    },
+    {
+        "Name": "Upper Tower - Ashina Dojo",
+        "AreaName": "Ashina Castle",
+        "Id": 1112957,
+        "Coords": {
+            "xyz": [-128.55, 40.90, 223.58]
+        }
+    },
+    {
+        "Name": "Ashina Reservoir",
+        "AreaName": "Ashina Castle",
+        "Id": 1122951,
+        "Coords": {
+            "xyz": [-198.66, -40.03, 242.50]
+        }
+    },
+    {
+        "Name": "Near Secret Passage",
+        "AreaName": "Ashina Castle",
+        "Id": 1122950,
+        "Coords": {
+            "xyz": [-279.48, -61.51, 190.13]
+        }
+    },
+    {
+        "Name": "Underground Waterway",
+        "AreaName": "Abandoned Dungeon",
+        "Id": 1302950,
+        "Coords": {
+            "xyz": [-461.85, -57.86, 352.65]
+        }
+    },
+    {
+        "Name": "Bottomless Hole",
+        "AreaName": "Abandoned Dungeon",
+        "Id": 1302951,
+        "Coords": {
+            "xyz": [-348.27, -74.70, 437.40]
+        }
+    },
+    {
+        "Name": "Senpou Temple, Mt. Kongo",
+        "AreaName": "Senpou Temple",
+        "Id": 2002950,
+        "Coords": {
+            "xyz": [-531.02, -12.99, 377.94]
+        }
+    },
+    {
+        "Name": "Shugendo",
+        "AreaName": "Senpou Temple",
+        "Id": 2002951,
+        "Coords": {
+            "xyz": [-702.07, 25.63, 431.52]
+        }
+    },
+    {
+        "Name": "Temple Grounds",
+        "AreaName": "Senpou Temple",
+        "Id": 2002952,
+        "Coords": {
+            "xyz": [-840.04, 88.94, 483.85]
+        }
+    },
+    {
+        "Name": "Main Hall",
+        "AreaName": "Senpou Temple",
+        "Id": 2002953,
+        "Coords": {
+            "xyz": [-843.65, 123.73, 557.01]
+        }
+    },
+    {
+        "Name": "Inner Sanctum",
+        "AreaName": "Senpou Temple",
+        "Id": 2002954,
+        "Coords": {
+            "xyz": [-811.86, 117.53, 644.26]
+        }
+    },
+    {
+        "Name": "Sunken Valley Cavern",
+        "AreaName": "Senpou Temple",
+        "Id": 2002955,
+        "Coords": {
+            "xyz": [-465.49, -98.95, 596.53]
+        }
+    },
+    {
+        "Name": "Bell Demon's Temple",
+        "AreaName": "Senpou Temple",
+        "Id": 2002956,
+        "Coords": {
+            "xyz": [-825.05, 96.91, 397.96]
+        }
+    },
+    {
+        "Name": "Under-Shrine Valley",
+        "AreaName": "Sunken Valley",
+        "Id": 1702957,
+        "Coords": {
+            "xyz": [30.97, -79.00, 402.10]
+        }
+    },
+    {
+        "Name": "Sunken Valley",
+        "AreaName": "Sunken Valley",
+        "Id": 1702950,
+        "Coords": {
+            "xyz": [ -151.52, -146.38, 499.98 ]
+        }
+    },
+    {
+        "Name": "Gun Fort",
+        "AreaName": "Sunken Valley",
+        "Id": 1702951,
+        "Coords": {
+            "xyz": [ -355.66, -166.16, 599.57 ]
+        }
+    },
+    {
+        "Name": "Riven Cave",
+        "AreaName": "Sunken Valley",
+        "Id": 1702952,
+        "Coords": {
+            "xyz": [ -383.40, -260.21, 763.92 ]
+        }
+    },
+    {
+        "Name": "Bodhisattva Valley",
+        "AreaName": "Sunken Valley",
+        "Id": 1702958,
+        "Coords": {
+            "xyz": [ -598.59, -272.26, 769.59 ]
+        }
+    },
+    {
+        "Name": "Guardian Ape's Watering Hole",
+        "AreaName": "Sunken Valley",
+        "Id": 1702953,
+        "Coords": {
+            "xyz": [ -654.45, -296.00, 720.37 ]
+        }
+    },
+    {
+        "Name": "Ashina Depths",
+        "AreaName": "Ashina Depths",
+        "Id": 1702955,
+        "Coords": {
+            "xyz": [-312.38, -319.52, 556.11]
+        }
+    },
+    {
+        "Name": "Poison Pool",
+        "AreaName": "Ashina Depths",
+        "Id": 1702954,
+        "Coords": {
+            "xyz": [-272.03, -354.68, 626.81]
+        }
+    },
+    {
+        "Name": "Guardian Ape's Burrow",
+        "AreaName": "Ashina Depths",
+        "Id": 1702956,
+        "Coords": {
+            "xyz": [-184.04, -376.75, 661.07]
+        }
+    },
+    {
+        "Name": "Hidden Forest",
+        "AreaName": "Ashina Depths",
+        "Id": 1502950,
+        "Coords": {
+            "xyz": [-129.35, -355.69, 736.11]
+        }
+    },
+    {
+        "Name": "Mibu Village",
+        "AreaName": "Ashina Depths",
+        "Id": 1502951,
+        "Coords": {
+            "xyz": [-222.38, -437.35, 999.30]
+        }
+    },
+    {
+        "Name": "Water Mill",
+        "AreaName": "Ashina Depths",
+        "Id": 1502952,
+        "Coords": {
+            "xyz": [-174.28, -423.78, 1205.15]
+        }
+    },
+    {
+        "Name": "Wedding Cave Door",
+        "AreaName": "Ashina Depths",
+        "Id": 1502953,
+        "Coords": {
+            "xyz": [-153.63, -392.80, 1431.61]
+        }
+    },
+    {
+        "Name": "Fountainhead Palace",
+        "AreaName": "Fountainhead Palace",
+        "Id": 2502950,
+        "Coords": {
+            "xyz": [101.01, 154.89, 58.17]
+        }
+    },
+    {
+        "Name": "Vermillion Bridge",
+        "AreaName": "Fountainhead Palace",
+        "Id": 2502951,
+        "Coords": {
+            "xyz": [64.76, 155.77, 113.48]
+        }
+    },
+    {
+        "Name": "Mibu Manor",
+        "AreaName": "Fountainhead Palace",
+        "Id": 2502956,
+        "Coords": {
+            "xyz": [-141.58, 104.51, 296.93]
+        }
+    },
+    {
+        "Name": "Flower Viewing Stage",
+        "AreaName": "Fountainhead Palace",
+        "Id": 2502952,
+        "Coords": {
+            "xyz": [-144.41, 105.09, 420.81]
+        }
+    },
+    {
+        "Name": "Great Sakura",
+        "AreaName": "Fountainhead Palace",
+        "Id": 2502953,
+        "Coords": {
+            "xyz": [-19.41, 134.20, 454.85]
+        }
+    },
+    {
+        "Name": "Palace Grounds",
+        "AreaName": "Fountainhead Palace",
+        "Id": 2502954,
+        "Coords": {
+            "xyz": [-16.00, 150.44, 591.44]
+        }
+    },
+    {
+        "Name": "Feeding Grounds",
+        "AreaName": "Fountainhead Palace",
+        "Id": 2502957,
+        "Coords": {
+            "xyz": [26.33, 108.51, 488.83]
+        }
+    },
+    {
+        "Name": "Near Pot Noble",
+        "AreaName": "Fountainhead Palace",
+        "Id": 2502958,
+        "Coords": {
+            "xyz": [-174.19, 131.59, 541.77]
+        }
+    },
+    {
+        "Name": "Sanctuary",
+        "AreaName": "Fountainhead Palace",
+        "Id": 2502955,
+        "Coords": {
+            "xyz": [-51.09, 223.17, 742.51]
+        }
+    },
+    {
+        "Name": "Dragonsping - Hirata Estate",
+        "AreaName": "Hirata Estate",
+        "Id": 1002950,
+        "Coords": {
+            "xyz": [26.70, -781.60, -50.00]
+        }
+    },
+    {
+        "Name": "Estate Path",
+        "AreaName": "Hirata Estate",
+        "Id": 1002951,
+        "Coords": {
+            "xyz": [-65.44, -824.84, 115.32]
+        }
+    },
+    {
+        "Name": "Bamboo Thicket Slope",
+        "AreaName": "Hirata Estate",
+        "Id": 1002952,
+        "Coords": {
+            "xyz": [117.00, -801.21, 312.00]
+        }
+    },
+    {
+        "Name": "Hirata Estate - Main Hall",
+        "AreaName": "Hirata Estate",
+        "Id": 1002953,
+        "Coords": {
+            "xyz": [21.51, -766.64, 404.40]
+        }
+    },
+    {
+        "Name": "Hirata Audience Chamber",
+        "AreaName": "Hirata Estate",
+        "Id": 1002955,
+        "Coords": {
+            "xyz": [-118.23, -765.15, 513.24]
+        }
+    },
+    {
+        "Name": "Hirata Estate - Hidden Temple",
+        "AreaName": "Hirata Estate",
+        "Id": 1002954,
+        "Coords": {
+            "xyz": [-231.00, -787.84, 578.00]
+        }
+    }
+]

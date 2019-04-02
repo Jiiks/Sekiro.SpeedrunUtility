@@ -1,0 +1,32 @@
+[
+    {
+        "HotkeyString": "Shift+F1",
+        "Name": "SaveCurrentCoordinates",
+        "Key": 112,
+        "Modifiers": 4
+    },
+    {
+        "HotkeyString": "Shift+F2",
+        "Name": "TeleportToCoordinates",
+        "Key": 113,
+        "Modifiers": 4
+    },
+    {
+        "HotkeyString": "F8",
+        "Name": "BackupSave",
+        "Key": 119,
+        "Modifiers": 0
+    },
+    {
+        "HotkeyString": "F9",
+        "Name": "LoadSave",
+        "Key": 120,
+        "Modifiers": 0
+    },
+    {
+        "HotkeyString": "F10",
+        "Name": "LoadLastQuickSave",
+        "Key": 121,
+        "Modifiers": 0
+    }
+]

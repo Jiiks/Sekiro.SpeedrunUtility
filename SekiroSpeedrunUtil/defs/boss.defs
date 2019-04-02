@@ -1,0 +1,65 @@
+﻿[
+    {
+        "Name": "Bull",
+        "AreaName": "Ashina Castle",
+        "Coords": {
+            "xyz": [ -284.08, -32.024, 132.53 ]
+        }
+    },
+    {
+        "Name": "Horse Dude",
+        "AreaName": "Ashina Outskirts",
+        "Coords": {
+            "xyz": [ -96.33, -54.17, 28.86 ]
+        }
+    },
+    {
+        "Name": "Armored Knight",
+        "AreaName": "Senpou Temple",
+        "Coords": {
+            "xyz": [ -792.65, 86.63, 410.40 ]
+        }
+    },
+    {
+        "Name": "Monkeys",
+        "AreaName": "Senpou Temple",
+        "Coords": {
+            "xyz": [ -966.07, -820.90, 543.08 ]
+        }
+    },
+    {
+        "Name": "Guardian Ape",
+        "AreaName": "Sunkey Valley",
+        "Coords": {
+            "xyz": [ -606.24, -273.89, 763.47 ]
+        }
+    },
+    {
+        "Name": "Corrupted Monk",
+        "AreaName": "Ashina Depths",
+        "Coords": {
+            "xyz": [ -186.33, -392.99, 1394.45 ]
+        }
+    },
+    {
+        "Name": "Snake Eyes",
+        "AreaName": "Ashina Depths",
+        "Coords": {
+            "xyz": [ -272.38, -354.68, 626.62 ]
+        }
+    },
+    {
+        "Name": "Noble Mist",
+        "AreaName": "Ashina Depths",
+        "Coords": {
+            "xyz": [ -138.81, -367.70, 909.52 ]
+        }
+    },
+    {
+        "Name": "Ori",
+        "AreaName": "Ashina Depths",
+        "Coords": {
+            "xyz": [ -147.94, -412.58, 1261.02 ]
+        }
+    }
+]
