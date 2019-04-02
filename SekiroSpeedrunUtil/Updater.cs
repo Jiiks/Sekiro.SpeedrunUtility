@@ -6,7 +6,7 @@ using Newtonsoft.Json.Linq;
 namespace SekiroSpeedrunUtil {
     public static class Updater {
 
-        private static string _apiEndpoint = "https://api.github.com/repos/Jiiks/Sekiro.SpeerunUtility/releases/latest";
+        private static string _apiEndpoint = "https://api.github.com/repos/Jiiks/Sekiro.SpeedrunUtility/releases/latest";
 
         public static bool CheckForUpdates(out string latestVer) {
             Diag.WriteLine("Checking for updates");
