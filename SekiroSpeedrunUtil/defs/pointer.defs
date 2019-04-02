@@ -78,6 +78,12 @@
         "type": "static"
     },
     {
+        "name": "DebugRender8",
+        "base": 0x143B65BCC,
+        "offsets": [],
+        "type": "static"
+    },
+    {
         "name": "Inventory",
         "base": 0x143B47CF0,
         "offsets": [ 0x8, 0xA30 ],

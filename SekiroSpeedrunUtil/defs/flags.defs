@@ -86,7 +86,7 @@
     {
         "name": "DebugRender0",
         "category": "RenderFlags",
-        "default": 0 
+        "default": 0
     },
     {
         "name": "DebugRender1",
@@ -120,6 +120,11 @@
     },
     {
         "name": "DebugRender7",
+        "category": "RenderFlags",
+        "default": 0
+    },
+    {
+        "name": "DebugRender8",
         "category": "RenderFlags",
         "default": 0
     }
