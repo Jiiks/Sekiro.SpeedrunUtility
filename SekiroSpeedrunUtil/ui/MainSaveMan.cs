@@ -214,7 +214,7 @@ namespace SekiroSpeedrunUtil.ui {
         }
 
         private string ProfileDir(string name = null) {
-            _smQuickLoadLastProfile = smProfiles.SelectedItem.ToString();
+            if(name != null) _smQuickLoadLastProfile = smProfiles.SelectedItem.ToString();
             var dir = name == null ? $"{SaveDir()}/{smProfiles.SelectedItem}" : $"{SaveDir()}/{name}";
             if (!Directory.Exists(dir)) Directory.CreateDirectory(dir);
             return dir;
@@ -272,7 +272,22 @@ namespace SekiroSpeedrunUtil.ui {
             if (b == 0) {
                 if (_smSelfWrite) return;
                 _smSelfWrite = true;
-                QuickLoad();
+                //QuickLoad();
+
+                if (_smQuickLoadLastItem == string.Empty || _smQuickLoadLastProfile == string.Empty) return;
+                try {
+                    var fPath = $"{ProfileDir(_smQuickLoadLastProfile)}/{_smQuickLoadLastItem.Replace(" ", "_")}";
+                    File.Copy(fPath, $"{_sekiroDir}/S0000.sl2", true);
+                    Toast("Quickload Success!", Color.MediumAquamarine, Color.Black);
+                } catch (Exception ex) {
+                    MetroMessageBox.Show(this,
+                        ex.Message,
+                        "Error",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error
+                    );
+                }
+
             } else {
                 _smSelfWrite = false;
             }
