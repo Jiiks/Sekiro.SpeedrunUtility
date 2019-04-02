@@ -1,51 +1,32 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace SekiroSpeedrunUtil
-{
-    class MouseDetector
-    {
+namespace SekiroSpeedrunUtil {
+    internal class MouseDetector {
         #region APIs
 
-        [DllImport("gdi32")]
-        public static extern uint GetPixel(IntPtr hDC, int XPos, int YPos);
-
         [DllImport("user32.dll", CharSet = CharSet.Auto)]
-        public static extern bool GetCursorPos(out POINT pt);
-
-        [DllImport("User32.dll", CharSet = CharSet.Auto)]
-        public static extern IntPtr GetWindowDC(IntPtr hWnd);
+        public static extern bool GetCursorPos(out Point pt);
 
         #endregion
 
-        Timer tm = new Timer() { Interval = 10 };
-        public delegate void MouseMoveDLG(object sender, Point p);
+        private readonly Timer _tm = new Timer() { Interval = 50 };
+        public delegate void MouseMoveDLG(object sender, System.Drawing.Point p);
         public event MouseMoveDLG MouseMove;
         public MouseDetector() {
-            tm.Tick += new EventHandler(tm_Tick); tm.Start();
+            _tm.Tick += Tm_Tick; _tm.Start();
         }
 
-        void tm_Tick(object sender, EventArgs e) {
-            POINT p;
-            GetCursorPos(out p);
-            if (MouseMove != null) MouseMove(this, new Point(p.X, p.Y));
+        private void Tm_Tick(object sender, EventArgs e) {
+            GetCursorPos(out var p);
+            MouseMove?.Invoke(this, new System.Drawing.Point(p.X, p.Y));
         }
 
         [StructLayout(LayoutKind.Sequential)]
-        public struct POINT
-        {
+        public struct Point  {
             public int X;
             public int Y;
-            public POINT(int x, int y) {
-                X = x;
-                Y = y;
-            }
         }
     }
 }
