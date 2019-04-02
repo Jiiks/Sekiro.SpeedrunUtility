@@ -62,9 +62,6 @@ namespace SekiroSpeedrunUtil.ui {
             var sekiro = Utils.Sekiro();
             if (sekiro == null) return;
 
-            var address = Defs.PointerByName("inventory").GetAddress(sekiro);
-
-            Diag.WriteLine($"Inv Start: {address.ToString("X")}");
 
             var emptyItem = new SekiroItem() {
                 Id1 = 0,
@@ -73,22 +70,27 @@ namespace SekiroSpeedrunUtil.ui {
                 Garbage = 0
             };
 
-            var invStart = address.ToInt64();
-            var invEnd = invStart + 4800; // We'll read the first 300 entries and assume there's no more?
-
             var itemCount = 0;
-            using (var remoteProc = new RemoteProcess(sekiro)) {
-                var spiderIndex = 0;
-                while (address.ToInt64() < invEnd) {
-                    var sekiroItem = remoteProc.Read<SekiroItem>(address);
-                    address += 16;
-                    var item = sekiroItem.ToItem();
-                    item.SpiderIndex = spiderIndex;
-                    spiderIndex++;
-                    _inventory.Add(item);
-                    if (sekiroItem.Equals(emptyItem)) continue;
-                    itemCount++;
-                }
+            IntPtr address;
+
+            var remoteProc = RemoteProc.Instance();
+            if (remoteProc == null) return;
+
+            address = Defs.PointerByName("inventory").GetAddress(remoteProc);
+            var invStart = address.ToInt64();
+            var invEnd = invStart + 4800;
+
+            Diag.WriteLine($"Inv Start: {address.ToString("X")}");
+            var spiderIndex = 0;
+            while (address.ToInt64() < invEnd) {
+                var sekiroItem = remoteProc.Read<SekiroItem>(address);
+                address += 16;
+                var item = sekiroItem.ToItem();
+                item.SpiderIndex = spiderIndex;
+                spiderIndex++;
+                _inventory.Add(item);
+                if (sekiroItem.Equals(emptyItem)) continue;
+                itemCount++;
             }
 
             Diag.WriteLine($"Inv End: {address.ToString("X")}");
@@ -124,16 +126,13 @@ namespace SekiroSpeedrunUtil.ui {
             }
 
             try {
-                var sekiro = Utils.Sekiro();
-                if (sekiro == null) return;
+                var remoteProc = RemoteProc.Instance();
+                if (remoteProc == null) return;
 
-                var address = Defs.PointerByName("inventory").GetAddress(sekiro);
-
-                using (var remoteProc = new RemoteProcess(sekiro)) {
-                    foreach (var item in _inventory) {
-                        remoteProc.Write(address, item.SekiroItem);
-                        address += 16;
-                    }
+                var address = Defs.PointerByName("inventory").GetAddress(remoteProc);
+                foreach (var item in _inventory) {
+                    remoteProc.Write(address, item.SekiroItem);
+                    address += 16;
                 }
             } catch (Exception ex) {
                 Diag.WriteLine(ex.Message);

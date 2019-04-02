@@ -77,7 +77,7 @@
   <ItemGroup>
     <Reference Include="MemoryLibrary, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Github\MemoryLibrary\MemoryLibrary\bin\x64\Release\MemoryLibrary.dll</HintPath>
+      <HintPath>..\..\MemoryLibrary\MemoryLibrary\bin\x64\Release\MemoryLibrary.dll</HintPath>
     </Reference>
     <Reference Include="MetroFramework, Version=1.4.0.0, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
       <HintPath>..\packages\MetroModernUI.1.4.0.0\lib\net\MetroFramework.dll</HintPath>
@@ -129,7 +129,9 @@
     <Compile Include="injects\InjectBase.cs" />
     <Compile Include="KeyboardHook.cs" />
     <Compile Include="MemoryThread.cs" />
+    <Compile Include="MemoryThreadMan.cs" />
     <Compile Include="MouseDetector.cs" />
+    <Compile Include="RemoteProc.cs" />
     <Compile Include="structs\IntPtrE.cs" />
     <Compile Include="structs\Item.cs" />
     <Compile Include="structs\Pattern.cs" />

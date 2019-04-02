@@ -7,7 +7,7 @@ namespace SekiroSpeedrunUtil.globalevents {
         private MemoryThread _thread;
 
         public override void Start() {
-            _thread = new MemoryThread("Sekiro", Defs.PointerByName("IGT"), 4, EventName());
+            _thread = new MemoryThread("Sekiro", Defs.PointerByName("IGT"), 4, EventName(), EMemoryThreadPriority.High);
             _thread.ValueChanged += (sender, args) => {
                 try {
                     var ms = BitConverter.ToInt32(args.Bytes, 0);

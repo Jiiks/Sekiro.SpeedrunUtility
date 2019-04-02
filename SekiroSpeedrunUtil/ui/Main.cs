@@ -1,6 +1,8 @@
 ﻿using System.Drawing;
 using System.Threading;
+using System.Windows.Forms;
 using MemoryLibrary;
+using MetroFramework;
 using SekiroSpeedrunUtil.globalevents;
 using SekiroSpeedrunUtil.structs;
 
@@ -14,7 +16,13 @@ namespace SekiroSpeedrunUtil.ui
         public GlobalEvent PlayerStats;
         public GlobalEvent LastIdol;
 
+        private static RemoteProcess _globalRemoteProcess;
+
+        public static RemoteProcess GlobalRemoteProc() {
+            return _globalRemoteProcess; }
+
         private void InitLogic() {
+            _globalRemoteProcess = new RemoteProcess(Utils.Sekiro());
             SetStatus("Loading definitions", Color.OrangeRed);
             LoadDefs();
             SetStatus("Waiting for Sekiro", Color.OrangeRed);
@@ -74,23 +82,26 @@ namespace SekiroSpeedrunUtil.ui
 
             LastIdol = new LastIdol();
             LastIdol.Subscribe((sender, e) => {
-                var idol = (Idol)e.Value;
-                UpdateCtrl(cboxLastIdol, () => cboxLastIdol.SelectedItem = idol.Name);
+                var idola = (Idol)e.Value;
+                UpdateCtrl(cboxLastIdol, () => cboxLastIdol.SelectedItem = idola.Name);
             });
             LastIdol.Start();
 
+            var remoteProc = RemoteProc.Instance();
+            if (remoteProc == null) {
+                MetroMessageBox.Show(this, "Sekiro should be running but was not found..", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
-            var sekiroProc = Utils.Sekiro();
-            using (var remoteProc = new RemoteProcess(sekiroProc)) {
-                var lastIdol = remoteProc.Read<int>(Defs.PointerByName("LastCommutedIdol").GetAddress(sekiroProc));
-                var idol = Defs.IdolById(lastIdol);
-                if (idol == null) {
-                    Diag.WriteLine($"Null Idol? {lastIdol}");
-                } else {
-                    UpdateCtrl(cboxLastIdol, () => {
-                        cboxLastIdol.SelectedItem = idol.Name;
-                    });
-                }
+            var lastIdol = remoteProc.Read<int>(Defs.PointerByName("LastCommutedIdol").GetAddress(remoteProc));
+            var idol = Defs.IdolById(lastIdol);
+            if (idol == null) {
+                Diag.WriteLine($"Null Idol? {lastIdol}");
+            } else {
+                UpdateCtrl(cboxLastIdol, () => {
+                    cboxLastIdol.SelectedItem = idol.Name;
+                });
             }
 
             SetStatus("Ready", Color.LimeGreen);
@@ -151,6 +162,7 @@ namespace SekiroSpeedrunUtil.ui
 
                     _sekiroHooked = true;
                     Init();
+                    break;
                 }
             }) { IsBackground = true };
             pt.Start();

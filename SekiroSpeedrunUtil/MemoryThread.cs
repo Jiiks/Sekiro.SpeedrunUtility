@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Threading;
-using MemoryLibrary;
 using SekiroSpeedrunUtil.structs;
 
 namespace SekiroSpeedrunUtil {
@@ -9,7 +8,10 @@ namespace SekiroSpeedrunUtil {
         private readonly string _processName;
         private readonly IntPtrE _ptr;
         private readonly EMemoryThreadPriority _threadPriority;
-        private Thread _thread;
+        public Thread Thread { get; private set; }
+
+        public int ThreadId;
+
         private readonly ManualResetEvent _manualResetEvent = new ManualResetEvent(true);
 
         private readonly int _bytesToRead;
@@ -33,19 +35,17 @@ namespace SekiroSpeedrunUtil {
                 _manualResetEvent.WaitOne();
                 Thread.Sleep((int)_threadPriority);
                 try {
-                    var proc = Utils.ProcByName(_processName);
-                    if(proc == null) continue;
 
-                    var addr = _ptr.GetAddress(proc);
-                    if(addr == IntPtr.Zero) continue;
+                    var remoteProc = RemoteProc.Instance();
+                    if(remoteProc == null) continue;
 
-                    using (var remoteProc = new RemoteProcess(proc)) {
-                        var bytes = remoteProc.ReadBytes(addr, _bytesToRead);
-                        if(bytes.IsEqual(_value)) continue;
-                        _value = bytes;
-                    }
+                    var addr = _ptr.GetAddress(remoteProc);
+                    if (addr == IntPtr.Zero) continue;
+                    var bytes = remoteProc.ReadBytes(addr, _bytesToRead);
+                    if(bytes.IsEqual(_value)) continue;
+                    _value = bytes;
 
-                    ValueChanged?.Invoke(this, new MemoryThreadEventArgs(){ Bytes = _value });
+                    ValueChanged?.Invoke(this, new MemoryThreadEventArgs { Bytes = _value });
 
                 } catch (Exception e) {
                     Diag.WriteLine($"[MemoryThread {_name}] {e.Message}");
@@ -55,10 +55,11 @@ namespace SekiroSpeedrunUtil {
         }
 
         public void Start() {
-            _thread = new Thread(ThreadProc) {
+            Thread = new Thread(ThreadProc) {
                 IsBackground = true
             };
-            _thread.Start();
+            Thread.Start();
+            MemoryThreadMan.Join(this);
         }
 
         public void Stop() => _stopped = true;

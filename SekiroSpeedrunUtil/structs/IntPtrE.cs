@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Linq;
 using MemoryLibrary;
 
@@ -17,13 +16,16 @@ namespace SekiroSpeedrunUtil.structs {
             _offsets = offsets;
         }
 
-        public IntPtr GetAddress(Process proc) {
+        public IntPtr GetAddress() {
+            Diag.WriteLine("Deprecation warning: IntPtrE::GetAddress(). Use IntPtrE::GetAddress(RemoteProcess) instead.");
+            return GetAddress(RemoteProc.Instance());
+        }
+
+        public IntPtr GetAddress(RemoteProcess remoteProc) {
+            if(remoteProc == null) return IntPtr.Zero;
             try {
-                if (proc.HasExited) return IntPtr.Zero;
-                using (var remoteProc = new RemoteProcess(proc)) {
-                    if (_offsets == null || _offsets.Length <= 0) return remoteProc.Read<IntPtr>(_ptr);
-                    return _offsets.Aggregate(_ptr, (current, offset) => remoteProc.Read<IntPtr>(current) + offset);
-                }
+                if (_offsets == null || _offsets.Length <= 0) return remoteProc.Read<IntPtr>(_ptr);
+                return _offsets.Aggregate(_ptr, (current, offset) => remoteProc.Read<IntPtr>(current) + offset);
             } catch (Exception) {
                 return IntPtr.Zero;
             }

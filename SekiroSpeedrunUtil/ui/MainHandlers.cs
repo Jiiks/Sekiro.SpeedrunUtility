@@ -118,14 +118,12 @@ namespace SekiroSpeedrunUtil.ui {
             if (idol == null) return;
             var idolId = idol.Id;
 
-            var sekiro = Utils.Sekiro();
-            if (sekiro == null) return;
+            var remoteProc = RemoteProc.Instance();
+            if (remoteProc == null) return;
 
-            using (var remoteProc = new RemoteProcess(sekiro)) {
-                var pointer = Defs.PointerByName("LastCommutedIdol");
-                if (pointer == null || pointer.BasePtr() == IntPtr.Zero) return;
-                remoteProc.Write(pointer.GetAddress(sekiro), idolId);
-            }
+            var pointer = Defs.PointerByName("LastCommutedIdol");
+            if (pointer == null || pointer.BasePtr() == IntPtr.Zero) return;
+            remoteProc.Write(pointer.GetAddress(remoteProc), idolId);
         }
 
     }
