@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Threading;
 using SekiroSpeedrunUtil.structs;
 
@@ -35,7 +36,6 @@ namespace SekiroSpeedrunUtil {
                 _manualResetEvent.WaitOne();
                 Thread.Sleep((int)_threadPriority);
                 try {
-
                     var remoteProc = RemoteProc.Instance();
                     if(remoteProc == null) continue;
 

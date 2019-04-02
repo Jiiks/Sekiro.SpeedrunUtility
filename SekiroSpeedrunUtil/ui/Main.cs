@@ -32,6 +32,14 @@ namespace SekiroSpeedrunUtil.ui
         private void Init() {
             Diag.WriteLine("Initializing");
             SetStatus("Initializing", Color.OrangeRed);
+
+            var remoteProc = RemoteProc.Instance();
+            if (remoteProc == null) {
+                MetroMessageBox.Show(this, "Sekiro should be running but was not found..", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             InitHotkeys();
 
             foreach (var flag in Defs.Flags.FastReverse()) {
@@ -86,13 +94,6 @@ namespace SekiroSpeedrunUtil.ui
                 UpdateCtrl(cboxLastIdol, () => cboxLastIdol.SelectedItem = idola.Name);
             });
             LastIdol.Start();
-
-            var remoteProc = RemoteProc.Instance();
-            if (remoteProc == null) {
-                MetroMessageBox.Show(this, "Sekiro should be running but was not found..", "Error",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
 
             var lastIdol = remoteProc.Read<int>(Defs.PointerByName("LastCommutedIdol").GetAddress(remoteProc));
             var idol = Defs.IdolById(lastIdol);

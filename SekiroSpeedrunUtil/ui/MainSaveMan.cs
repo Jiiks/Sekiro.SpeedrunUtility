@@ -96,7 +96,7 @@ namespace SekiroSpeedrunUtil.ui {
         private void QuickLoad() {
             if (_smQuickLoadLastItem == string.Empty || _smQuickLoadLastProfile == string.Empty) return;
             try {
-                var fPath = $"{ProfileDir(_smQuickLoadLastProfile)}/{_smQuickLoadLastItem.Replace(" ", "_")}";
+                var fPath = $"{ProfileDir(true)}/{_smQuickLoadLastItem.Replace(" ", "_")}";
                 File.Copy(fPath, $"{_sekiroDir}/S0000.sl2", true);
                 Toast("Quickload Success!", Color.MediumAquamarine, Color.Black);
             } catch (Exception ex) {
@@ -112,7 +112,7 @@ namespace SekiroSpeedrunUtil.ui {
         private void QuickLoadQuick() {
             if (_smQuickLoadLastQuick == string.Empty || _smQuickLoadLastProfile == string.Empty) return;
             try {
-                var fPath = $"{ProfileDir(_smQuickLoadLastProfile)}/{_smQuickLoadLastQuick.Replace(" ", "_")}";
+                var fPath = $"{ProfileDir(true)}/{_smQuickLoadLastQuick.Replace(" ", "_")}";
                 File.Copy(fPath, $"{_sekiroDir}/S0000.sl2", true);
                 Toast("Quickload Success!", Color.MediumAquamarine, Color.Black);
             } catch (Exception ex) {
@@ -190,6 +190,7 @@ namespace SekiroSpeedrunUtil.ui {
         private void SmProfiles_SelectedIndexChanged(object sender, EventArgs e) {
             try {
                 _profileDir = ProfileDir();
+                _smQuickLoadLastProfile = smProfiles.SelectedItem.ToString();
                 SmListSaves();
             } catch (Exception ex) {
                 MetroMessageBox.Show(this,
@@ -213,9 +214,9 @@ namespace SekiroSpeedrunUtil.ui {
             return $"{appdataPath}/{_saveDir}/saves";
         }
 
-        private string ProfileDir(string name = null) {
-            if(name != null) _smQuickLoadLastProfile = smProfiles.SelectedItem.ToString();
-            var dir = name == null ? $"{SaveDir()}/{smProfiles.SelectedItem}" : $"{SaveDir()}/{name}";
+        private string ProfileDir(bool quick = false) {
+            var name = quick ? _smQuickLoadLastProfile : smProfiles.SelectedItem;
+            var dir = $"{SaveDir()}/{name}";
             if (!Directory.Exists(dir)) Directory.CreateDirectory(dir);
             return dir;
         }
@@ -272,13 +273,11 @@ namespace SekiroSpeedrunUtil.ui {
             if (b == 0) {
                 if (_smSelfWrite) return;
                 _smSelfWrite = true;
-                //QuickLoad();
-
                 if (_smQuickLoadLastItem == string.Empty || _smQuickLoadLastProfile == string.Empty) return;
                 try {
-                    var fPath = $"{ProfileDir(_smQuickLoadLastProfile)}/{_smQuickLoadLastItem.Replace(" ", "_")}";
+                    var fPath = $"{ProfileDir(true)}/{_smQuickLoadLastItem.Replace(" ", "_")}";
                     File.Copy(fPath, $"{_sekiroDir}/S0000.sl2", true);
-                    Toast("Quickload Success!", Color.MediumAquamarine, Color.Black);
+                    Diag.WriteLine("Pseudo read-only success");
                 } catch (Exception ex) {
                     MetroMessageBox.Show(this,
                         ex.Message,

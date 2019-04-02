@@ -92,7 +92,7 @@ namespace SekiroSpeedrunUtil.ui {
             });
         }
 
-        private void UpdateCtrl(ISynchronizeInvoke obj, MethodInvoker action) {
+        private static void UpdateCtrl(ISynchronizeInvoke obj, MethodInvoker action) {
             obj.InvokeIfRequired(action);
         }
 
