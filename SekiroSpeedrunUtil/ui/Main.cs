@@ -16,13 +16,8 @@ namespace SekiroSpeedrunUtil.ui
         public GlobalEvent PlayerStats;
         public GlobalEvent LastIdol;
 
-        private static RemoteProcess _globalRemoteProcess;
-
-        public static RemoteProcess GlobalRemoteProc() {
-            return _globalRemoteProcess; }
 
         private void InitLogic() {
-            _globalRemoteProcess = new RemoteProcess(Utils.Sekiro());
             SetStatus("Loading definitions", Color.OrangeRed);
             LoadDefs();
             SetStatus("Waiting for Sekiro", Color.OrangeRed);
