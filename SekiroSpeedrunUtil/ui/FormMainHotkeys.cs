@@ -10,6 +10,7 @@ namespace SekiroSpeedrunUtil.ui {
         private HotkeyStruct _backupSave;
         private HotkeyStruct _loadSave;
         private HotkeyStruct _loadQuick;
+        private HotkeyStruct _forceQuit;
 
         public void InitHotkeys() {
 
@@ -54,6 +55,13 @@ namespace SekiroSpeedrunUtil.ui {
                             hotkeyLoadQuick.Text = hotkeyStruct.HotkeyString;
                         });
                         break;
+                    case "ForceQuit":
+                        _forceQuit = hotkeyStruct;
+                        _forceQuit.Id = HotKeyManager.RegisterHotKey(hotkeyStruct.Key, hotkeyStruct.Modifiers);
+                        hotkeyQuit.InvokeIfRequired(() => {
+                            hotkeyQuit.Text = hotkeyStruct.HotkeyString;
+                        });
+                        break;
                 }
             }
 
@@ -62,6 +70,7 @@ namespace SekiroSpeedrunUtil.ui {
             hotkeyBackupSave.KeyDown += HotkeyBackupSaveOnKeyDown;
             hotkeyLoadSave.KeyDown += HotkeyLoadSaveOnKeyDown;
             hotkeyLoadQuick.KeyDown += HotkeyLoadQuickOnKeyDown;
+            hotkeyQuit.KeyDown += HotkeyQuitOnKeyDown;
 
             HotKeyManager.HotKeyPressed += (sender, e) => {
                 mainTabControl.InvokeIfRequired(() => {
@@ -75,6 +84,28 @@ namespace SekiroSpeedrunUtil.ui {
                     HotKeyManager.UnregisterHotKey(_saveCurrentCoordinates.Id);
                 }
             };
+        }
+
+        private void HotkeyQuitOnKeyDown(object sender, KeyEventArgs e) {
+            var hotkey = ResolveHotkey(e);
+            if (hotkey.Invalid) return;
+            if (hotkey.Clear) {
+                hotkeyQuit.Text = "";
+                metroLabel9.Focus();
+                return;
+            }
+
+            hotkeyQuit.Text = hotkey.HotkeyString;
+
+            if (_loadSave.Id > 0) {
+                HotKeyManager.UnregisterHotKey(_forceQuit.Id);
+            }
+
+            _forceQuit = hotkey;
+            _forceQuit.Name = "ForceQuit";
+            _forceQuit.Id = HotKeyManager.RegisterHotKey(hotkey.Key, hotkey.Modifiers);
+            metroLabel9.Focus();
+            SaveHotkeys();
         }
 
         private void HotkeyLoadSaveOnKeyDown(object sender, KeyEventArgs e) {
@@ -149,7 +180,8 @@ namespace SekiroSpeedrunUtil.ui {
                 _teleportToCoordinates,
                 _backupSave,
                 _loadSave,
-                _loadQuick
+                _loadQuick,
+                _forceQuit
             }));
         }
 
@@ -178,6 +210,18 @@ namespace SekiroSpeedrunUtil.ui {
                 QuickLoadQuick();
                 return;
             }
+
+            if (e.Key == _forceQuit.Key && e.Modifiers == _forceQuit.Modifiers) {
+                ForceQuit();
+                return;
+            }
+        }
+
+        private void ForceQuit() {
+            var rp = RemoteProc.Instance();
+            if (rp == null) return;
+
+            rp.Write(Defs.PointerByName("QuitToTitle").GetAddress(rp), (byte)1);
         }
 
         private void HotkeySaveCurrentCoordinatesOnKeyDown(object sender, KeyEventArgs e) {

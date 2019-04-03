@@ -8,7 +8,9 @@ using SekiroSpeedrunUtil.structs;
 namespace SekiroSpeedrunUtil.ui {
     public partial class FormMain {
         private void BtnTest_Click(object sender, EventArgs e) {
-            
+            var confetti = Defs.ItemByName("divine confetti");
+            new AddItem(confetti, 8).Execute();
+            // new AddItem()
         }
 
         private void CboxAreaTeleport_SelectedIndexChanged(object sender, EventArgs e) {

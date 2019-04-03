@@ -200,5 +200,7 @@ namespace SekiroSpeedrunUtil.ui {
             lblTinyTitle.Show();
             Opacity = 0.2d;
         }
+
+        
     }
 }

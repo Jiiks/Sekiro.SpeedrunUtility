@@ -21,6 +21,7 @@ namespace SekiroSpeedrunUtil.ui
             SetStatus("Loading definitions", Color.OrangeRed);
             LoadDefs();
             SetStatus("Waiting for Sekiro", Color.OrangeRed);
+            InitItemInjector();
             StartProcessThread();
         }
 

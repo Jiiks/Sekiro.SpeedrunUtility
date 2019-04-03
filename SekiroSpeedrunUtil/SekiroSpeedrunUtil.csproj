@@ -124,6 +124,7 @@
     <Compile Include="globalevents\PlayerStats.cs" />
     <Compile Include="GlobalHook.cs" />
     <Compile Include="ICDict.cs" />
+    <Compile Include="injects\AddItem.cs" />
     <Compile Include="injects\AreaTeleport.cs" />
     <Compile Include="injects\IdolTeleport.cs" />
     <Compile Include="injects\InjectBase.cs" />
@@ -198,6 +199,9 @@
       <DependentUpon>InvSpider.cs</DependentUpon>
     </Compile>
     <Compile Include="ui\MainHandlers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ui\MainItemInjector.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ui\MainSaveMan.cs">

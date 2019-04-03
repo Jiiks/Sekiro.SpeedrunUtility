@@ -84,6 +84,12 @@
         "type": "static"
     },
     {
+        "name": "QuitToTitle",
+        "base": 0x143B55048,
+        "offsets": [ 0x23C ],
+        "type": "static"
+    },
+    {
         "name": "Inventory",
         "base": 0x143B47CF0,
         "offsets": [ 0x8, 0xA30 ],

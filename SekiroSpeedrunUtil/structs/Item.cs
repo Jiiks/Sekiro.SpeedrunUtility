@@ -6,6 +6,12 @@
         public bool Empty;
         public int SpiderIndex;
         public SekiroItem SekiroItem;
+        public bool Consumable; // Temp
+
+        public int ShortId() {
+            if (Consumable) return (short) Id1;
+            return (short) Id2;
+        }
     }
 
     public struct SekiroItem {

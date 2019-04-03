@@ -27,7 +27,7 @@ namespace SekiroSpeedrunUtil.ui {
             try {
                 if(smProfiles.Items.Contains(profileName)) throw new Exception("Profile already exists!");
 
-                var profileDir = $"{SaveDir()}/{profileName}";
+                var profileDir = $@"{SaveDir()}/{profileName}";
                 if(Directory.Exists(profileDir)) throw new Exception("Profile already exists!");
 
                 smProfiles.Items.Add(profileName);
@@ -43,7 +43,11 @@ namespace SekiroSpeedrunUtil.ui {
         }
 
         private void SmDelProfile_Click(object sender, EventArgs e) {
-
+            var dr = MetroMessageBox.Show(this, "Deleting a profile also deletes all saves in it. Delete profile?", "Delete Profile", MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question);
+            if (dr != DialogResult.Yes) return;
+            var profileDir = ProfileDir();
+            Directory.Delete(profileDir, true);
         }
 
         private void SmSave_Click(object sender, EventArgs e) {
@@ -69,14 +73,14 @@ namespace SekiroSpeedrunUtil.ui {
 
         private void SaveGame(string name) {
             try {
-                var destPath = $"{ProfileDir()}/{name}";
+                var destPath = $@"{ProfileDir()}/{name}";
                 var iter = 1;
                 while (File.Exists(destPath)) {
-                    destPath = $"{ProfileDir()}/{name}_{iter}";
+                    destPath = $@"{ProfileDir()}/{name}_{iter}";
                     iter++;
                 }
 
-                File.Copy($"{_sekiroDir}/S0000.sl2", destPath.Replace(" ", "_"));
+                File.Copy($@"{_sekiroDir}/S0000.sl2", destPath, true);
                 SmListSaves();
             } catch (Exception ex) {
                 MetroMessageBox.Show(this,
@@ -96,8 +100,8 @@ namespace SekiroSpeedrunUtil.ui {
         private void QuickLoad() {
             if (_smQuickLoadLastItem == string.Empty || _smQuickLoadLastProfile == string.Empty) return;
             try {
-                var fPath = $"{ProfileDir(true)}/{_smQuickLoadLastItem.Replace(" ", "_")}";
-                File.Copy(fPath, $"{_sekiroDir}/S0000.sl2", true);
+                var fPath = $@"{ProfileDir(true)}/{_smQuickLoadLastItem}";
+                File.Copy(fPath, $@"{_sekiroDir}/S0000.sl2", true);
                 Toast("Quickload Success!", Color.MediumAquamarine, Color.Black);
             } catch (Exception ex) {
                 MetroMessageBox.Show(this,
@@ -112,8 +116,8 @@ namespace SekiroSpeedrunUtil.ui {
         private void QuickLoadQuick() {
             if (_smQuickLoadLastQuick == string.Empty || _smQuickLoadLastProfile == string.Empty) return;
             try {
-                var fPath = $"{ProfileDir(true)}/{_smQuickLoadLastQuick.Replace(" ", "_")}";
-                File.Copy(fPath, $"{_sekiroDir}/S0000.sl2", true);
+                var fPath = $@"{ProfileDir(true)}/{_smQuickLoadLastQuick}";
+                File.Copy(fPath, $@"{_sekiroDir}/S0000.sl2", true);
                 Toast("Quickload Success!", Color.MediumAquamarine, Color.Black);
             } catch (Exception ex) {
                 MetroMessageBox.Show(this,
@@ -129,14 +133,14 @@ namespace SekiroSpeedrunUtil.ui {
             var qsName = smQuickSave.Text;
             try {
                 var iter = 0;
-                var destPath = $"{ProfileDir()}/{qsName.Replace("%", iter.ToString())}";
+                var destPath = $@"{ProfileDir()}/{qsName.Replace("%", iter.ToString())}";
                 
                 while (File.Exists(destPath)) {
-                    destPath = $"{ProfileDir()}/{qsName.Replace("%", iter.ToString())}";
+                    destPath = $@"{ProfileDir()}/{qsName.Replace("%", iter.ToString())}";
                     iter++;
                 }
-                _smQuickLoadLastQuick = new FileInfo(destPath.Replace(" ", "_")).Name;
-                File.Copy($"{_sekiroDir}/S0000.sl2", destPath.Replace(" ", "_"));
+                _smQuickLoadLastQuick = new FileInfo(destPath).Name;
+                File.Copy($@"{_sekiroDir}/S0000.sl2", destPath);
                 SmListSaves();
                 Toast("Quicksave Success!", Color.MediumAquamarine, Color.Black);
             } catch (Exception ex) {
@@ -152,8 +156,8 @@ namespace SekiroSpeedrunUtil.ui {
         private void SmLoad_Click(object sender, EventArgs e) {
             if (smSavesList.Items.Count <= 0 || smSavesList.SelectedItems.Count <= 0) return;
             try {
-                var fPath = $"{ProfileDir()}/{smSavesList.SelectedItems[0].Text.Replace(" ", "_")}";
-                File.Copy(fPath, $"{_sekiroDir}/S0000.sl2", true);
+                var fPath = $@"{ProfileDir()}/{smSavesList.SelectedItems[0].Text}";
+                File.Copy(fPath, $@"{_sekiroDir}/S0000.sl2", true);
                 Toast("Save Loaded!", Color.Black, Color.MediumAquamarine);
             } catch (Exception ex) {
                 MetroMessageBox.Show(this,
@@ -168,7 +172,7 @@ namespace SekiroSpeedrunUtil.ui {
         private void SmDelete_Click(object sender, EventArgs e) {
             if (smSavesList.Items.Count <= 0 || smSavesList.SelectedItems.Count <= 0) return;
             try {
-                var fPath = $"{ProfileDir()}/{smSavesList.SelectedItems[0].Text.Replace(" ", "_")}";
+                var fPath = $@"{ProfileDir()}/{smSavesList.SelectedItems[0].Text}";
                 File.Delete(fPath);
                 SmListSaves();
             } catch (Exception ex) {
@@ -205,29 +209,29 @@ namespace SekiroSpeedrunUtil.ui {
         private void SmListSaves() {
             smSavesList.Items.Clear();
             foreach (var file in Directory.GetFiles(_profileDir)) {
-                smSavesList.Items.Add(new FileInfo(file).Name.Replace("_", " "));
+                smSavesList.Items.Add(new FileInfo(file).Name);
             }
         }
 
         private string SaveDir() {
             var appdataPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
-            return $"{appdataPath}/{_saveDir}/saves";
+            return $@"{appdataPath}/{_saveDir}/saves";
         }
 
         private string ProfileDir(bool quick = false) {
             var name = quick ? _smQuickLoadLastProfile : smProfiles.SelectedItem;
-            var dir = $"{SaveDir()}/{name}";
+            var dir = $@"{SaveDir()}/{name}";
             if (!Directory.Exists(dir)) Directory.CreateDirectory(dir);
             return dir;
         }
 
         private string SekiroDir() {
             var appdataPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
-            var dirs = Directory.GetDirectories($"{appdataPath}/Sekiro");
+            var dirs = Directory.GetDirectories($@"{appdataPath}/Sekiro");
 
             foreach (var dir in dirs) {
                 if (dir.Contains("srutil")) continue;
-                if (!File.Exists($"{dir}/S0000.sl2")) continue;
+                if (!File.Exists($@"{dir}/S0000.sl2")) continue;
                 return dir;
             }
 
@@ -243,15 +247,14 @@ namespace SekiroSpeedrunUtil.ui {
 
         private void SmRename(string oldName, string newName, int index) {
             try {
-                newName = newName.Replace(" ", "_");
-                var destPath = $"{ProfileDir()}/{newName}";
+                var destPath = $@"{ProfileDir()}/{newName}";
                 var iter = 1;
                 while (File.Exists(destPath)) {
-                    destPath = $"{ProfileDir()}/{newName}_{iter}";
+                    destPath = $@"{ProfileDir()}/{newName}_{iter}";
                     iter++;
                 }
 
-                File.Move($"{ProfileDir()}/{oldName.Replace(" ", "_")}", destPath);
+                File.Move($@"{ProfileDir()}/{oldName}", destPath);
                 SmListSaves();
             } catch (Exception ex) {
                 
@@ -275,8 +278,8 @@ namespace SekiroSpeedrunUtil.ui {
                 _smSelfWrite = true;
                 if (_smQuickLoadLastItem == string.Empty || _smQuickLoadLastProfile == string.Empty) return;
                 try {
-                    var fPath = $"{ProfileDir(true)}/{_smQuickLoadLastItem.Replace(" ", "_")}";
-                    File.Copy(fPath, $"{_sekiroDir}/S0000.sl2", true);
+                    var fPath = $@"{ProfileDir(true)}/{_smQuickLoadLastItem}";
+                    File.Copy(fPath, $@"{_sekiroDir}/S0000.sl2", true);
                     Diag.WriteLine("Pseudo read-only success");
                 } catch (Exception ex) {
                     MetroMessageBox.Show(this,
