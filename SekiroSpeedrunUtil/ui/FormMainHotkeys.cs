@@ -1,4 +1,6 @@
-﻿using System.IO;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Windows.Forms;
 using Newtonsoft.Json;
 
@@ -11,6 +13,7 @@ namespace SekiroSpeedrunUtil.ui {
         private HotkeyStruct _loadSave;
         private HotkeyStruct _loadQuick;
         private HotkeyStruct _forceQuit;
+        private HotkeyStruct _flagToggle;
 
         public void InitHotkeys() {
 
@@ -62,6 +65,13 @@ namespace SekiroSpeedrunUtil.ui {
                             hotkeyQuit.Text = hotkeyStruct.HotkeyString;
                         });
                         break;
+                    /*case "FlagToggle":
+                        _flagToggle = hotkeyStruct;
+                        _flagToggle.Id = HotKeyManager.RegisterHotKey(hotkeyStruct.Key, hotkeyStruct.Modifiers);
+                        flagToggle.InvokeIfRequired(() => {
+                            flagToggle.Text = hotkeyStruct.HotkeyString;
+                        });
+                        break;*/
                 }
             }
 
@@ -71,6 +81,7 @@ namespace SekiroSpeedrunUtil.ui {
             hotkeyLoadSave.KeyDown += HotkeyLoadSaveOnKeyDown;
             hotkeyLoadQuick.KeyDown += HotkeyLoadQuickOnKeyDown;
             hotkeyQuit.KeyDown += HotkeyQuitOnKeyDown;
+            //flagToggle.KeyDown += FlagToggleOnKeyDown;
 
             HotKeyManager.HotKeyPressed += (sender, e) => {
                 mainTabControl.InvokeIfRequired(() => {
@@ -84,6 +95,34 @@ namespace SekiroSpeedrunUtil.ui {
                     HotKeyManager.UnregisterHotKey(_saveCurrentCoordinates.Id);
                 }
             };
+
+            flagToggleList.DoubleClick += (sender, args) => {
+                if (flagToggleList.SelectedItems.Count > 0) {
+                    flagToggleList.SelectedItems[0].BeginEdit();
+                }
+            };
+        }
+        
+        private void FlagToggleOnKeyDown(object sender, KeyEventArgs e) {
+            var hotkey = ResolveHotkey(e);
+            if (hotkey.Invalid) return;
+            if (hotkey.Clear) {
+                flagToggle.Text = "";
+                metroLabel9.Focus();
+                return;
+            }
+
+            flagToggle.Text = hotkey.HotkeyString;
+
+            if (_flagToggle.Id > 0) {
+                HotKeyManager.UnregisterHotKey(_flagToggle.Id);
+            }
+
+            _flagToggle = hotkey;
+            _flagToggle.Name = "FlagToggle";
+            _flagToggle.Id = HotKeyManager.RegisterHotKey(hotkey.Key, hotkey.Modifiers);
+            metroLabel9.Focus();
+            SaveHotkeys();
         }
 
         private void HotkeyQuitOnKeyDown(object sender, KeyEventArgs e) {
@@ -181,7 +220,8 @@ namespace SekiroSpeedrunUtil.ui {
                 _backupSave,
                 _loadSave,
                 _loadQuick,
-                _forceQuit
+                _forceQuit,
+                _flagToggle
             }));
         }
 
@@ -215,7 +255,20 @@ namespace SekiroSpeedrunUtil.ui {
                 ForceQuit();
                 return;
             }
+
+            if (e.Key == _flagToggle.Key && e.Modifiers == _flagToggle.Modifiers) {
+                FlagToggle();
+                return;
+            }
         }
+
+        private void FlagToggle() {
+            foreach (var item in flagToggleList.Items) {
+                Diag.WriteLine(item.ToString());
+            }
+        }
+
+        // flagToggle _flagToggle FlagToggle
 
         private void ForceQuit() {
             var rp = RemoteProc.Instance();
@@ -314,6 +367,18 @@ namespace SekiroSpeedrunUtil.ui {
             }
 
             return hotkey;
+        }
+
+        private void BtnAddFlagToggle_Click(object sender, EventArgs e) {
+            flagToggleList.Items.Add("Flag Name");
+        }
+
+        private void BtnRemoveFlagToggle_Click(object sender, EventArgs e) {
+            if (flagToggleList.SelectedItems.Count > 0) {
+                foreach (var selectedItem in flagToggleList.SelectedItems) {     
+                    flagToggleList.Items.Remove((ListViewItem)selectedItem);
+                }
+            }
         }
 
         public struct HotkeyStruct {

@@ -83,6 +83,13 @@
             this.tabPage1 = new MetroFramework.Controls.MetroTabPage();
             this.pageHotkeys = new MetroFramework.Controls.MetroTabPage();
             this.metroPanel4 = new MetroFramework.Controls.MetroPanel();
+            this.btnRemoveFlagToggle = new MetroFramework.Controls.MetroButton();
+            this.btnAddFlagToggle = new MetroFramework.Controls.MetroButton();
+            this.flagToggleList = new MetroFramework.Controls.MetroListView();
+            this.metroLabel19 = new MetroFramework.Controls.MetroLabel();
+            this.flagToggle = new MetroFramework.Controls.MetroTextBox();
+            this.metroLabel18 = new MetroFramework.Controls.MetroLabel();
+            this.hotkeyQuit = new MetroFramework.Controls.MetroTextBox();
             this.metroLabel16 = new MetroFramework.Controls.MetroLabel();
             this.hotkeyLoadQuick = new MetroFramework.Controls.MetroTextBox();
             this.metroLabel13 = new MetroFramework.Controls.MetroLabel();
@@ -131,8 +138,7 @@
             this.toastMsg = new MetroFramework.Controls.MetroLabel();
             this.btnInfo = new MetroFramework.Controls.MetroLink();
             this.lblTinyTitle = new MetroFramework.Controls.MetroLabel();
-            this.metroLabel18 = new MetroFramework.Controls.MetroLabel();
-            this.hotkeyQuit = new MetroFramework.Controls.MetroTextBox();
+            this.metroLabel20 = new MetroFramework.Controls.MetroLabel();
             this.groupBox4.SuspendLayout();
             this.metroPanel1.SuspendLayout();
             this.metroPanel3.SuspendLayout();
@@ -928,6 +934,12 @@
             // 
             // metroPanel4
             // 
+            this.metroPanel4.Controls.Add(this.metroLabel20);
+            this.metroPanel4.Controls.Add(this.btnRemoveFlagToggle);
+            this.metroPanel4.Controls.Add(this.btnAddFlagToggle);
+            this.metroPanel4.Controls.Add(this.flagToggleList);
+            this.metroPanel4.Controls.Add(this.metroLabel19);
+            this.metroPanel4.Controls.Add(this.flagToggle);
             this.metroPanel4.Controls.Add(this.metroLabel18);
             this.metroPanel4.Controls.Add(this.hotkeyQuit);
             this.metroPanel4.Controls.Add(this.metroLabel16);
@@ -953,6 +965,153 @@
             this.metroPanel4.VerticalScrollbarBarColor = true;
             this.metroPanel4.VerticalScrollbarHighlightOnWheel = false;
             this.metroPanel4.VerticalScrollbarSize = 10;
+            // 
+            // btnRemoveFlagToggle
+            // 
+            this.btnRemoveFlagToggle.Enabled = false;
+            this.btnRemoveFlagToggle.Location = new System.Drawing.Point(532, 282);
+            this.btnRemoveFlagToggle.Name = "btnRemoveFlagToggle";
+            this.btnRemoveFlagToggle.Size = new System.Drawing.Size(75, 23);
+            this.btnRemoveFlagToggle.Style = MetroFramework.MetroColorStyle.Teal;
+            this.btnRemoveFlagToggle.TabIndex = 33;
+            this.btnRemoveFlagToggle.Text = "-";
+            this.btnRemoveFlagToggle.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.btnRemoveFlagToggle.UseSelectable = true;
+            this.btnRemoveFlagToggle.Visible = false;
+            this.btnRemoveFlagToggle.Click += new System.EventHandler(this.BtnRemoveFlagToggle_Click);
+            // 
+            // btnAddFlagToggle
+            // 
+            this.btnAddFlagToggle.Enabled = false;
+            this.btnAddFlagToggle.Location = new System.Drawing.Point(613, 282);
+            this.btnAddFlagToggle.Name = "btnAddFlagToggle";
+            this.btnAddFlagToggle.Size = new System.Drawing.Size(75, 23);
+            this.btnAddFlagToggle.Style = MetroFramework.MetroColorStyle.Teal;
+            this.btnAddFlagToggle.TabIndex = 32;
+            this.btnAddFlagToggle.Text = "+";
+            this.btnAddFlagToggle.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.btnAddFlagToggle.UseSelectable = true;
+            this.btnAddFlagToggle.Visible = false;
+            this.btnAddFlagToggle.Click += new System.EventHandler(this.BtnAddFlagToggle_Click);
+            // 
+            // flagToggleList
+            // 
+            this.flagToggleList.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
+            this.flagToggleList.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.flagToggleList.Enabled = false;
+            this.flagToggleList.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.flagToggleList.ForeColor = System.Drawing.Color.DarkGray;
+            this.flagToggleList.FullRowSelect = true;
+            this.flagToggleList.LabelEdit = true;
+            this.flagToggleList.Location = new System.Drawing.Point(383, 70);
+            this.flagToggleList.Name = "flagToggleList";
+            this.flagToggleList.OwnerDraw = true;
+            this.flagToggleList.Size = new System.Drawing.Size(305, 206);
+            this.flagToggleList.TabIndex = 26;
+            this.flagToggleList.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.flagToggleList.UseCompatibleStateImageBehavior = false;
+            this.flagToggleList.UseCustomBackColor = true;
+            this.flagToggleList.UseCustomForeColor = true;
+            this.flagToggleList.UseSelectable = true;
+            this.flagToggleList.Visible = false;
+            // 
+            // metroLabel19
+            // 
+            this.metroLabel19.AutoSize = true;
+            this.metroLabel19.Enabled = false;
+            this.metroLabel19.Location = new System.Drawing.Point(13, 228);
+            this.metroLabel19.Name = "metroLabel19";
+            this.metroLabel19.Size = new System.Drawing.Size(77, 19);
+            this.metroLabel19.Style = MetroFramework.MetroColorStyle.Teal;
+            this.metroLabel19.TabIndex = 25;
+            this.metroLabel19.Text = "Flag Toggle";
+            this.metroLabel19.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.metroLabel19.Visible = false;
+            // 
+            // flagToggle
+            // 
+            // 
+            // 
+            // 
+            this.flagToggle.CustomButton.Image = null;
+            this.flagToggle.CustomButton.Location = new System.Drawing.Point(128, 2);
+            this.flagToggle.CustomButton.Name = "";
+            this.flagToggle.CustomButton.Size = new System.Drawing.Size(15, 15);
+            this.flagToggle.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
+            this.flagToggle.CustomButton.TabIndex = 1;
+            this.flagToggle.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.flagToggle.CustomButton.UseSelectable = true;
+            this.flagToggle.CustomButton.Visible = false;
+            this.flagToggle.Enabled = false;
+            this.flagToggle.Lines = new string[] {
+        "F9"};
+            this.flagToggle.Location = new System.Drawing.Point(172, 228);
+            this.flagToggle.MaxLength = 32767;
+            this.flagToggle.Name = "flagToggle";
+            this.flagToggle.PasswordChar = '\0';
+            this.flagToggle.ReadOnly = true;
+            this.flagToggle.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.flagToggle.SelectedText = "";
+            this.flagToggle.SelectionLength = 0;
+            this.flagToggle.SelectionStart = 0;
+            this.flagToggle.ShortcutsEnabled = true;
+            this.flagToggle.ShowClearButton = true;
+            this.flagToggle.Size = new System.Drawing.Size(146, 20);
+            this.flagToggle.Style = MetroFramework.MetroColorStyle.Teal;
+            this.flagToggle.TabIndex = 24;
+            this.flagToggle.Text = "F9";
+            this.flagToggle.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.flagToggle.UseSelectable = true;
+            this.flagToggle.Visible = false;
+            this.flagToggle.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.flagToggle.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            // 
+            // metroLabel18
+            // 
+            this.metroLabel18.AutoSize = true;
+            this.metroLabel18.Location = new System.Drawing.Point(13, 202);
+            this.metroLabel18.Name = "metroLabel18";
+            this.metroLabel18.Size = new System.Drawing.Size(87, 19);
+            this.metroLabel18.Style = MetroFramework.MetroColorStyle.Teal;
+            this.metroLabel18.TabIndex = 23;
+            this.metroLabel18.Text = "Quit to menu";
+            this.metroLabel18.Theme = MetroFramework.MetroThemeStyle.Dark;
+            // 
+            // hotkeyQuit
+            // 
+            // 
+            // 
+            // 
+            this.hotkeyQuit.CustomButton.Image = null;
+            this.hotkeyQuit.CustomButton.Location = new System.Drawing.Point(128, 2);
+            this.hotkeyQuit.CustomButton.Name = "";
+            this.hotkeyQuit.CustomButton.Size = new System.Drawing.Size(15, 15);
+            this.hotkeyQuit.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
+            this.hotkeyQuit.CustomButton.TabIndex = 1;
+            this.hotkeyQuit.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.hotkeyQuit.CustomButton.UseSelectable = true;
+            this.hotkeyQuit.CustomButton.Visible = false;
+            this.hotkeyQuit.Lines = new string[] {
+        "F9"};
+            this.hotkeyQuit.Location = new System.Drawing.Point(172, 202);
+            this.hotkeyQuit.MaxLength = 32767;
+            this.hotkeyQuit.Name = "hotkeyQuit";
+            this.hotkeyQuit.PasswordChar = '\0';
+            this.hotkeyQuit.ReadOnly = true;
+            this.hotkeyQuit.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.hotkeyQuit.SelectedText = "";
+            this.hotkeyQuit.SelectionLength = 0;
+            this.hotkeyQuit.SelectionStart = 0;
+            this.hotkeyQuit.ShortcutsEnabled = true;
+            this.hotkeyQuit.ShowClearButton = true;
+            this.hotkeyQuit.Size = new System.Drawing.Size(146, 20);
+            this.hotkeyQuit.Style = MetroFramework.MetroColorStyle.Teal;
+            this.hotkeyQuit.TabIndex = 22;
+            this.hotkeyQuit.Text = "F9";
+            this.hotkeyQuit.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.hotkeyQuit.UseSelectable = true;
+            this.hotkeyQuit.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.hotkeyQuit.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
             // 
             // metroLabel16
             // 
@@ -1824,58 +1983,24 @@
             this.lblTinyTitle.Theme = MetroFramework.MetroThemeStyle.Dark;
             this.lblTinyTitle.Visible = false;
             // 
-            // metroLabel18
+            // metroLabel20
             // 
-            this.metroLabel18.AutoSize = true;
-            this.metroLabel18.Location = new System.Drawing.Point(13, 202);
-            this.metroLabel18.Name = "metroLabel18";
-            this.metroLabel18.Size = new System.Drawing.Size(87, 19);
-            this.metroLabel18.Style = MetroFramework.MetroColorStyle.Teal;
-            this.metroLabel18.TabIndex = 23;
-            this.metroLabel18.Text = "Quit to menu";
-            this.metroLabel18.Theme = MetroFramework.MetroThemeStyle.Dark;
-            // 
-            // hotkeyQuit
-            // 
-            // 
-            // 
-            // 
-            this.hotkeyQuit.CustomButton.Image = null;
-            this.hotkeyQuit.CustomButton.Location = new System.Drawing.Point(128, 2);
-            this.hotkeyQuit.CustomButton.Name = "";
-            this.hotkeyQuit.CustomButton.Size = new System.Drawing.Size(15, 15);
-            this.hotkeyQuit.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
-            this.hotkeyQuit.CustomButton.TabIndex = 1;
-            this.hotkeyQuit.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
-            this.hotkeyQuit.CustomButton.UseSelectable = true;
-            this.hotkeyQuit.CustomButton.Visible = false;
-            this.hotkeyQuit.Lines = new string[] {
-        "F9"};
-            this.hotkeyQuit.Location = new System.Drawing.Point(172, 202);
-            this.hotkeyQuit.MaxLength = 32767;
-            this.hotkeyQuit.Name = "hotkeyQuit";
-            this.hotkeyQuit.PasswordChar = '\0';
-            this.hotkeyQuit.ReadOnly = true;
-            this.hotkeyQuit.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.hotkeyQuit.SelectedText = "";
-            this.hotkeyQuit.SelectionLength = 0;
-            this.hotkeyQuit.SelectionStart = 0;
-            this.hotkeyQuit.ShortcutsEnabled = true;
-            this.hotkeyQuit.ShowClearButton = true;
-            this.hotkeyQuit.Size = new System.Drawing.Size(146, 20);
-            this.hotkeyQuit.Style = MetroFramework.MetroColorStyle.Teal;
-            this.hotkeyQuit.TabIndex = 22;
-            this.hotkeyQuit.Text = "F9";
-            this.hotkeyQuit.Theme = MetroFramework.MetroThemeStyle.Dark;
-            this.hotkeyQuit.UseSelectable = true;
-            this.hotkeyQuit.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
-            this.hotkeyQuit.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            this.metroLabel20.AutoSize = true;
+            this.metroLabel20.Enabled = false;
+            this.metroLabel20.Location = new System.Drawing.Point(383, 48);
+            this.metroLabel20.Name = "metroLabel20";
+            this.metroLabel20.Size = new System.Drawing.Size(97, 19);
+            this.metroLabel20.Style = MetroFramework.MetroColorStyle.Teal;
+            this.metroLabel20.TabIndex = 34;
+            this.metroLabel20.Text = "Flags to toggle";
+            this.metroLabel20.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.metroLabel20.Visible = false;
             // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(962, 515);
+            this.ClientSize = new System.Drawing.Size(851, 515);
             this.Controls.Add(this.lblTinyTitle);
             this.Controls.Add(this.btnInfo);
             this.Controls.Add(this.toast);
@@ -2025,5 +2150,11 @@
         private MetroFramework.Controls.MetroButton injectItems;
         private MetroFramework.Controls.MetroLabel metroLabel18;
         private MetroFramework.Controls.MetroTextBox hotkeyQuit;
+        private MetroFramework.Controls.MetroLabel metroLabel19;
+        private MetroFramework.Controls.MetroTextBox flagToggle;
+        private MetroFramework.Controls.MetroButton btnRemoveFlagToggle;
+        private MetroFramework.Controls.MetroButton btnAddFlagToggle;
+        private MetroFramework.Controls.MetroListView flagToggleList;
+        private MetroFramework.Controls.MetroLabel metroLabel20;
     }
 }

@@ -201,6 +201,5 @@ namespace SekiroSpeedrunUtil.ui {
             Opacity = 0.2d;
         }
 
-        
     }
 }

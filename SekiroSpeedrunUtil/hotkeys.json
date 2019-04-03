@@ -12,21 +12,27 @@
         "Modifiers": 4
     },
     {
-        "HotkeyString": "F8",
+        "HotkeyString": "Shift+F3",
         "Name": "BackupSave",
-        "Key": 119,
-        "Modifiers": 0
+        "Key": 114,
+        "Modifiers": 4
     },
     {
-        "HotkeyString": "F9",
+        "HotkeyString": "Shift+F4",
         "Name": "LoadSave",
-        "Key": 120,
-        "Modifiers": 0
+        "Key": 115,
+        "Modifiers": 4
     },
     {
-        "HotkeyString": "F10",
+        "HotkeyString": "Shift+F5",
         "Name": "LoadLastQuickSave",
-        "Key": 121,
-        "Modifiers": 0
+        "Key": 116,
+        "Modifiers": 4
+    },
+    {
+        "HotkeyString": "Shift+F6",
+        "Name": "ForceQuit",
+        "Key": 117,
+        "Modifiers": 4
     }
 ]
