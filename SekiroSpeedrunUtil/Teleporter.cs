@@ -37,12 +37,23 @@ namespace SekiroSpeedrunUtil {
             new AreaTeleport(area).Execute();
         }
 
+        public static void Teleport(Idol idol, Vector3 coords) {
+            void TeleAfter(object sender, GlobalEventArgs e) {
+                if ((byte)e.Value != 1) return;
+                Teleport(coords);
+                GlobalEvents.Unsubscribe("GameState", TeleAfter);
+            }
+            GlobalEvents.Subscribe("GameState", TeleAfter);
+            new IdolTeleport(idol).Execute();
+        }
+
         public static void Teleport(Idol idol) {
             Teleport(idol.Area, idol.Coords);
         }
 
         public static void Teleport(Boss boss) {
-            Teleport(boss.Area, boss.Coords);
+            if(boss.Idol != null) Teleport(boss.Idol, boss.Coords);
+            else Teleport(boss.Area, boss.Coords);
         }
 
         private static PointerStruct Coordinates() {

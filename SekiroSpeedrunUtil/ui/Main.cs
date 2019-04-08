@@ -113,11 +113,14 @@ namespace SekiroSpeedrunUtil.ui
 
             foreach (var boss in Defs.Bosses) {
                 var area = boss.Areaname.Area();
-                if (area == null) continue;
+                var idol = boss.IdolName.Idol();
+                if (area == null && idol == null) continue;
                 if (currentArea != boss.Areaname) {
                     currentArea = boss.Areaname;
                     cboxBossTeleport.Items.Add("-" + boss.Areaname);
                 }
+
+                boss.Idol = idol;
                 boss.Area = area;
 
                 cboxBossTeleport.Items.Add(boss.Name);

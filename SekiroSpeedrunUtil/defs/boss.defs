@@ -1,65 +1,114 @@
 ﻿[
     {
-        "Name": "Bull",
-        "AreaName": "Ashina Castle",
-        "Coords": {
-            "xyz": [ -284.08, -32.024, 132.53 ]
-        }
-    },
-    {
-        "Name": "Horse Dude",
-        "AreaName": "Ashina Outskirts",
-        "Coords": {
+        "name": "Gyoubu Masataka Oniwa",
+        "areaname": "Ashina Outskirts",
+        "idolname": "Ashina Castle Gate Fortress",
+        "coords": {
             "xyz": [ -96.33, -54.17, 28.86 ]
         }
     },
     {
-        "Name": "Armored Knight",
-        "AreaName": "Senpou Temple",
-        "Coords": {
-            "xyz": [ -792.65, 86.63, 410.40 ]
+        "name": "Demon of Hatred",
+        "areaname": "Ashina Outskirts",
+        "idolname": "Ashina Castle Gate Fortress",
+        "coords": {
+            "xyz": [ -96.33, -54.17, 28.86 ]
         }
     },
     {
-        "Name": "Monkeys",
-        "AreaName": "Senpou Temple",
-        "Coords": {
+        "name": "Genichiro Ashina",
+        "areaname": "Ashina Castle",
+        "idolname": "Upper Tower - Antechamber",
+        "coords": {
+            "xyz": [ -106.66, 54.08, 242.03 ]
+        }
+    },
+    {
+        "name": "Great Shinobi Owl",
+        "areaname": "Ashina Castle",
+        "idolname": "Upper Tower - Antechamber",
+        "coords": {
+            "xyz": [ -106.66, 54.08, 242.03 ]
+        }
+    },
+    {
+        "name": "Isshin Ashina",
+        "areaname": "Ashina Castle",
+        "idolname": "Upper Tower - Antechamber",
+        "coords": {
+            "xyz": [ -106.66, 54.08, 242.03 ]
+        }
+    },
+    {
+        "name": "Isshin Ashina: Sword Saint",
+        "areaname": "Ashina Reservoir",
+        "idolname": "Near Secret Passage",
+        "coords": {
+            "xyz": [ -375.24, -46.07, 191.83 ]
+        }
+    },
+    {
+        "name": "Folding Screen Monkeys",
+        "areaname": "Senpou Temple",
+        "coords": {
             "xyz": [ -966.07, -820.90, 543.08 ]
         }
     },
     {
-        "Name": "Guardian Ape",
-        "AreaName": "Sunkey Valley",
-        "Coords": {
+        "name": "Guardian Ape",
+        "areaname": "Sunken Valley",
+        "idolname": "Guardian Ape's Watering Hole",
+        "coords": {
             "xyz": [ -606.24, -273.89, 763.47 ]
         }
     },
     {
-        "Name": "Corrupted Monk",
-        "AreaName": "Ashina Depths",
-        "Coords": {
+        "name": "Lady Butterfly",
+        "areaname": "Hirate Estate",
+        "idolname": "Hirata Audience Chamber",
+        "coords": {
+            "xyz": [ -217, -787.81, 569.8 ]
+        }
+    },
+    {
+        "name": "Owl (Father)",
+        "areaname": "Hirate Estate",
+        "idolname": "Hirata Audience Chamber",
+        "coords": {
+            "xyz": [ -217, -787.81, 569.8 ]
+        }
+    },
+    {
+        "name": "Corrupted Monk",
+        "areaname": "Ashina Depths",
+        "idolname": "Water Mill",
+        "coords": {
             "xyz": [ -186.33, -392.99, 1394.45 ]
         }
     },
     {
-        "Name": "Snake Eyes",
-        "AreaName": "Ashina Depths",
-        "Coords": {
-            "xyz": [ -272.38, -354.68, 626.62 ]
+        "name": "Headless Ape",
+        "areaname": "Ashina Depths",
+        "idolname": "Guardian Ape's Burrow",
+        "coords": {
+            "xyz": [ -606.24, -273.89, 763.47 ]
         }
     },
     {
-        "Name": "Noble Mist",
-        "AreaName": "Ashina Depths",
-        "Coords": {
-            "xyz": [ -138.81, -367.70, 909.52 ]
+        "name": "True Monk",
+        "areaname": "Fountainhead Palace",
+        "idolname": "Fountainhead Palace",
+        "coords": {
+            "xyz": [ 90.04, 154.99, 71.8 ]
         }
     },
     {
-        "Name": "Ori",
-        "AreaName": "Ashina Depths",
-        "Coords": {
-            "xyz": [ -147.94, -412.58, 1261.02 ]
+        "name": "Divine Dragon",
+        "areaname": "Fountainhead Palace",
+        "idolname": "Sanctuary",
+        "coords": {
+            "xyz": [ -45.84, 388.98, 238.1 ]
         }
     }
 ]
+
