@@ -20,6 +20,7 @@ namespace SekiroSpeedrunUtil.ui
         private void InitLogic() {
             SetStatus("Loading definitions", Color.OrangeRed);
             LoadDefs();
+            InitHotkeys();
             SetStatus("Waiting for Sekiro", Color.OrangeRed);
             InitItemInjector();
             StartProcessThread();
@@ -35,8 +36,6 @@ namespace SekiroSpeedrunUtil.ui
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-
-            InitHotkeys();
 
             foreach (var flag in Defs.Flags.FastReverse()) {
                 flag.RenderFlag(this);

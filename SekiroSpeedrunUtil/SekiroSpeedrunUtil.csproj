@@ -128,11 +128,13 @@
     <Compile Include="injects\AreaTeleport.cs" />
     <Compile Include="injects\IdolTeleport.cs" />
     <Compile Include="injects\InjectBase.cs" />
+    <Compile Include="HotKeyManager.cs" />
     <Compile Include="KeyboardHook.cs" />
     <Compile Include="MemoryThread.cs" />
     <Compile Include="MemoryThreadMan.cs" />
     <Compile Include="MouseDetector.cs" />
     <Compile Include="RemoteProc.cs" />
+    <Compile Include="structs\Hotkey.cs" />
     <Compile Include="structs\IntPtrE.cs" />
     <Compile Include="structs\Item.cs" />
     <Compile Include="structs\Pattern.cs" />

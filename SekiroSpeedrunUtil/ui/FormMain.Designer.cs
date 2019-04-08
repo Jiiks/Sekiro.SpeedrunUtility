@@ -31,6 +31,9 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Something");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Render Flags", new System.Windows.Forms.TreeNode[] {
+            treeNode1});
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             this.btnTest = new MetroFramework.Controls.MetroButton();
             this.cboxAreaTeleport = new MetroFramework.Controls.MetroComboBox();
@@ -83,6 +86,7 @@
             this.tabPage1 = new MetroFramework.Controls.MetroTabPage();
             this.pageHotkeys = new MetroFramework.Controls.MetroTabPage();
             this.metroPanel4 = new MetroFramework.Controls.MetroPanel();
+            this.metroLabel20 = new MetroFramework.Controls.MetroLabel();
             this.btnRemoveFlagToggle = new MetroFramework.Controls.MetroButton();
             this.btnAddFlagToggle = new MetroFramework.Controls.MetroButton();
             this.flagToggleList = new MetroFramework.Controls.MetroListView();
@@ -102,6 +106,7 @@
             this.hotkeySaveCurrentCoordinates = new MetroFramework.Controls.MetroTextBox();
             this.metroLabel9 = new MetroFramework.Controls.MetroLabel();
             this.tabSaveManager = new MetroFramework.Controls.MetroTabPage();
+            this.quitOnLoad = new MetroFramework.Controls.MetroCheckBox();
             this.smPseudoReadonly = new MetroFramework.Controls.MetroCheckBox();
             this.smQuickSave = new MetroFramework.Controls.MetroTextBox();
             this.metroLabel15 = new MetroFramework.Controls.MetroLabel();
@@ -134,11 +139,13 @@
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.metroTabPage2 = new MetroFramework.Controls.MetroTabPage();
             this.tbDebug = new MetroFramework.Controls.MetroTextBox();
+            this.metroTabPage5 = new MetroFramework.Controls.MetroTabPage();
+            this.treeView1 = new System.Windows.Forms.TreeView();
             this.toast = new MetroFramework.Controls.MetroPanel();
             this.toastMsg = new MetroFramework.Controls.MetroLabel();
             this.btnInfo = new MetroFramework.Controls.MetroLink();
             this.lblTinyTitle = new MetroFramework.Controls.MetroLabel();
-            this.metroLabel20 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel21 = new MetroFramework.Controls.MetroLabel();
             this.groupBox4.SuspendLayout();
             this.metroPanel1.SuspendLayout();
             this.metroPanel3.SuspendLayout();
@@ -154,6 +161,7 @@
             this.metroTabPage4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.injectorGrid)).BeginInit();
             this.metroTabPage2.SuspendLayout();
+            this.metroTabPage5.SuspendLayout();
             this.toast.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -885,6 +893,7 @@
             this.mainTabControl.Controls.Add(this.metroTabPage1);
             this.mainTabControl.Controls.Add(this.metroTabPage4);
             this.mainTabControl.Controls.Add(this.metroTabPage2);
+            this.mainTabControl.Controls.Add(this.metroTabPage5);
             this.mainTabControl.ItemSize = new System.Drawing.Size(50, 30);
             this.mainTabControl.Location = new System.Drawing.Point(23, 73);
             this.mainTabControl.Name = "mainTabControl";
@@ -934,6 +943,7 @@
             // 
             // metroPanel4
             // 
+            this.metroPanel4.Controls.Add(this.metroLabel21);
             this.metroPanel4.Controls.Add(this.metroLabel20);
             this.metroPanel4.Controls.Add(this.btnRemoveFlagToggle);
             this.metroPanel4.Controls.Add(this.btnAddFlagToggle);
@@ -965,6 +975,19 @@
             this.metroPanel4.VerticalScrollbarBarColor = true;
             this.metroPanel4.VerticalScrollbarHighlightOnWheel = false;
             this.metroPanel4.VerticalScrollbarSize = 10;
+            // 
+            // metroLabel20
+            // 
+            this.metroLabel20.AutoSize = true;
+            this.metroLabel20.Enabled = false;
+            this.metroLabel20.Location = new System.Drawing.Point(383, 48);
+            this.metroLabel20.Name = "metroLabel20";
+            this.metroLabel20.Size = new System.Drawing.Size(97, 19);
+            this.metroLabel20.Style = MetroFramework.MetroColorStyle.Teal;
+            this.metroLabel20.TabIndex = 34;
+            this.metroLabel20.Text = "Flags to toggle";
+            this.metroLabel20.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.metroLabel20.Visible = false;
             // 
             // btnRemoveFlagToggle
             // 
@@ -1362,6 +1385,7 @@
             // tabSaveManager
             // 
             this.tabSaveManager.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            this.tabSaveManager.Controls.Add(this.quitOnLoad);
             this.tabSaveManager.Controls.Add(this.smPseudoReadonly);
             this.tabSaveManager.Controls.Add(this.smQuickSave);
             this.tabSaveManager.Controls.Add(this.metroLabel15);
@@ -1386,6 +1410,19 @@
             this.tabSaveManager.VerticalScrollbarBarColor = true;
             this.tabSaveManager.VerticalScrollbarHighlightOnWheel = false;
             this.tabSaveManager.VerticalScrollbarSize = 10;
+            // 
+            // quitOnLoad
+            // 
+            this.quitOnLoad.AutoSize = true;
+            this.quitOnLoad.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.quitOnLoad.Location = new System.Drawing.Point(477, 338);
+            this.quitOnLoad.Name = "quitOnLoad";
+            this.quitOnLoad.Size = new System.Drawing.Size(89, 15);
+            this.quitOnLoad.Style = MetroFramework.MetroColorStyle.Yellow;
+            this.quitOnLoad.TabIndex = 34;
+            this.quitOnLoad.Text = "Quit on load";
+            this.quitOnLoad.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.quitOnLoad.UseSelectable = true;
             // 
             // smPseudoReadonly
             // 
@@ -1452,7 +1489,7 @@
             this.metroLabel14.FontWeight = MetroFramework.MetroLabelWeight.Bold;
             this.metroLabel14.Location = new System.Drawing.Point(235, 301);
             this.metroLabel14.Name = "metroLabel14";
-            this.metroLabel14.Size = new System.Drawing.Size(297, 23);
+            this.metroLabel14.Size = new System.Drawing.Size(221, 23);
             this.metroLabel14.Style = MetroFramework.MetroColorStyle.Teal;
             this.metroLabel14.TabIndex = 30;
             this.metroLabel14.Text = "Doubleclick a save to rename";
@@ -1461,9 +1498,9 @@
             // 
             // smDelete
             // 
-            this.smDelete.Location = new System.Drawing.Point(441, 330);
+            this.smDelete.Location = new System.Drawing.Point(361, 330);
             this.smDelete.Name = "smDelete";
-            this.smDelete.Size = new System.Drawing.Size(95, 23);
+            this.smDelete.Size = new System.Drawing.Size(63, 23);
             this.smDelete.Style = MetroFramework.MetroColorStyle.Teal;
             this.smDelete.TabIndex = 20;
             this.smDelete.Text = "Delete";
@@ -1473,9 +1510,9 @@
             // 
             // smLoad
             // 
-            this.smLoad.Location = new System.Drawing.Point(340, 330);
+            this.smLoad.Location = new System.Drawing.Point(300, 330);
             this.smLoad.Name = "smLoad";
-            this.smLoad.Size = new System.Drawing.Size(95, 23);
+            this.smLoad.Size = new System.Drawing.Size(55, 23);
             this.smLoad.Style = MetroFramework.MetroColorStyle.Teal;
             this.smLoad.TabIndex = 19;
             this.smLoad.Text = "Load";
@@ -1487,7 +1524,7 @@
             // 
             this.smSave.Location = new System.Drawing.Point(239, 330);
             this.smSave.Name = "smSave";
-            this.smSave.Size = new System.Drawing.Size(95, 23);
+            this.smSave.Size = new System.Drawing.Size(55, 23);
             this.smSave.Style = MetroFramework.MetroColorStyle.Teal;
             this.smSave.TabIndex = 18;
             this.smSave.Text = "Save";
@@ -1930,6 +1967,34 @@
             this.tbDebug.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.tbDebug.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
             // 
+            // metroTabPage5
+            // 
+            this.metroTabPage5.Controls.Add(this.treeView1);
+            this.metroTabPage5.HorizontalScrollbarBarColor = true;
+            this.metroTabPage5.HorizontalScrollbarHighlightOnWheel = false;
+            this.metroTabPage5.HorizontalScrollbarSize = 10;
+            this.metroTabPage5.Location = new System.Drawing.Point(4, 34);
+            this.metroTabPage5.Name = "metroTabPage5";
+            this.metroTabPage5.Size = new System.Drawing.Size(792, 362);
+            this.metroTabPage5.TabIndex = 8;
+            this.metroTabPage5.Text = "metroTabPage5";
+            this.metroTabPage5.VerticalScrollbarBarColor = true;
+            this.metroTabPage5.VerticalScrollbarHighlightOnWheel = false;
+            this.metroTabPage5.VerticalScrollbarSize = 10;
+            // 
+            // treeView1
+            // 
+            this.treeView1.Location = new System.Drawing.Point(3, 3);
+            this.treeView1.Name = "treeView1";
+            treeNode1.Name = "Node1";
+            treeNode1.Text = "Something";
+            treeNode2.Name = "Node0";
+            treeNode2.Text = "Render Flags";
+            this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
+            treeNode2});
+            this.treeView1.Size = new System.Drawing.Size(786, 356);
+            this.treeView1.TabIndex = 2;
+            // 
             // toast
             // 
             this.toast.Controls.Add(this.toastMsg);
@@ -1983,18 +2048,16 @@
             this.lblTinyTitle.Theme = MetroFramework.MetroThemeStyle.Dark;
             this.lblTinyTitle.Visible = false;
             // 
-            // metroLabel20
+            // metroLabel21
             // 
-            this.metroLabel20.AutoSize = true;
-            this.metroLabel20.Enabled = false;
-            this.metroLabel20.Location = new System.Drawing.Point(383, 48);
-            this.metroLabel20.Name = "metroLabel20";
-            this.metroLabel20.Size = new System.Drawing.Size(97, 19);
-            this.metroLabel20.Style = MetroFramework.MetroColorStyle.Teal;
-            this.metroLabel20.TabIndex = 34;
-            this.metroLabel20.Text = "Flags to toggle";
-            this.metroLabel20.Theme = MetroFramework.MetroThemeStyle.Dark;
-            this.metroLabel20.Visible = false;
+            this.metroLabel21.AutoSize = true;
+            this.metroLabel21.Location = new System.Drawing.Point(13, 33);
+            this.metroLabel21.Name = "metroLabel21";
+            this.metroLabel21.Size = new System.Drawing.Size(309, 19);
+            this.metroLabel21.Style = MetroFramework.MetroColorStyle.Teal;
+            this.metroLabel21.TabIndex = 35;
+            this.metroLabel21.Text = "Press ESC to remove hotkey while hotkey is focused";
+            this.metroLabel21.Theme = MetroFramework.MetroThemeStyle.Dark;
             // 
             // FormMain
             // 
@@ -2041,6 +2104,7 @@
             this.metroTabPage4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.injectorGrid)).EndInit();
             this.metroTabPage2.ResumeLayout(false);
+            this.metroTabPage5.ResumeLayout(false);
             this.toast.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -2156,5 +2220,9 @@
         private MetroFramework.Controls.MetroButton btnAddFlagToggle;
         private MetroFramework.Controls.MetroListView flagToggleList;
         private MetroFramework.Controls.MetroLabel metroLabel20;
+        private MetroFramework.Controls.MetroTabPage metroTabPage5;
+        private System.Windows.Forms.TreeView treeView1;
+        private MetroFramework.Controls.MetroCheckBox quitOnLoad;
+        private MetroFramework.Controls.MetroLabel metroLabel21;
     }
 }

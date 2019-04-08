@@ -1,93 +1,106 @@
 ﻿using System;
-using System.Threading;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using Newtonsoft.Json;
+using SekiroSpeedrunUtil.structs;
 
 namespace SekiroSpeedrunUtil {
-    public static class HotKeyManager  {
+    public class KeyboardHook : IDisposable {
 
-        public static event EventHandler<HotKeyEventArgs> HotKeyPressed;
-        private static volatile MessageWindow _wnd;
-        private static volatile IntPtr _hwnd;
-        private static readonly ManualResetEvent _windowReadyEvent = new ManualResetEvent(false);
+        //private List<Hotkey> _hotkeys;
 
-        public static int RegisterHotKey(Keys key, KeyModifiers modifiers) {
-            _windowReadyEvent.WaitOne();
-            var id = Interlocked.Increment(ref _id);
-            _wnd.Invoke(new RegisterHotKeyDelegate(RegisterHotKeyInternal), _hwnd, id, (uint)modifiers, (uint)key);
-            return id;
+        public KeyboardHook() {
+            _keyboardProc = Callback;
+            /*
+            _keyboardProc = Callback;
+            var hotkeyFile = "hotkeys2.json";
+            if (File.Exists($"{Utils.DataDir()}/hotkeys2.json")) hotkeyFile = $"{Utils.DataDir()}/hotkeys2.json";
+
+            _hotkeys = JsonConvert.DeserializeObject <List<Hotkey>>(File.ReadAllText(hotkeyFile));
+            */
         }
 
-        public static void UnregisterHotKey(int id) => _wnd.Invoke(new UnRegisterHotKeyDelegate(UnRegisterHotKeyInternal), _hwnd, id);
+        [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+        public static extern IntPtr SetWindowsHookEx(int idHook, KeyboardHook.KeyboardProc lpfn, IntPtr hMod, uint dwThreadId);
 
-        private delegate void RegisterHotKeyDelegate(IntPtr hwnd, int id, uint modifiers, uint key);
+        [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        public static extern bool UnhookWindowsHookEx(IntPtr hookId);
 
-        private delegate void UnRegisterHotKeyDelegate(IntPtr hwnd, int id);
+        [DllImport("user32", CallingConvention = CallingConvention.StdCall)]
+        public static extern IntPtr CallNextHookEx(IntPtr hookId, int nCode, IntPtr wParam, IntPtr lParam);
 
-        private static void RegisterHotKeyInternal(IntPtr hwnd, int id, uint modifiers, uint key) => Native.RegisterHotKey(hwnd, id, modifiers, key);
+        [DllImport("user32.dll", CharSet = CharSet.Auto, ExactSpelling = true, CallingConvention = CallingConvention.Winapi)]
+        public static extern short GetKeyState(int keyCode);
 
-        private static void UnRegisterHotKeyInternal(IntPtr hwnd, int id) => Native.UnregisterHotKey(_hwnd, id);
+        //Modifier key vkCode constants
+        private const int VK_SHIFT = 0x10;
+        private const int VK_CONTROL = 0x11;
+        private const int VK_MENU = 0x12;
+        private const int VK_CAPITAL = 0x14;
 
-        private static void OnHotKeyPressed(HotKeyEventArgs e) => HotKeyPressed?.Invoke(null, e);
+        private const int WH_KEYBOARD_LL = 13;
+        private const int WM_KEYDOWN = 0x0100;
 
-        
-        static HotKeyManager() {
-            var messageLoop = new Thread(delegate () {
-                Application.Run(new MessageWindow());
-            }) {
-                Name = "MessageLoopThread",
-                IsBackground = true
-            };
-            messageLoop.Start();
+        public delegate IntPtr KeyboardProc(int nCode, IntPtr wParam, IntPtr lParam);
+
+        private Keys GetModifiers () {
+            var key = new Keys();
+            if ((GetKeyState(VK_SHIFT) & 0x8000) != 0) key |= Keys.Shift;
+            if ((GetKeyState(VK_CONTROL) & 0x8000) != 0) key |= Keys.Control;
+            if ((GetKeyState(VK_MENU) & 0x8000) != 0) key |= Keys.Alt;
+            return key;
         }
 
-        private class MessageWindow : Form  {
-            public MessageWindow() {
-                _wnd = this;
-                _hwnd = this.Handle;
-                _windowReadyEvent.Set();
+        public event EventHandler<KeyPressEventArgs> OnKeyPressed;
+
+        private static KeyboardProc _keyboardProc;
+        private IntPtr _hookId = IntPtr.Zero;
+
+        public void Hook() {
+            _hookId = SetWindowsHookEx(WH_KEYBOARD_LL, _keyboardProc, IntPtr.Zero, 0);
+        }
+
+
+        private IntPtr Callback(int nCode, IntPtr wParam, IntPtr lParam) {
+            if(nCode < 0 || wParam != (IntPtr)WM_KEYDOWN) return CallNextHookEx(_hookId, nCode, wParam, lParam);
+
+            try {
+                var vkCode = Marshal.ReadInt32(lParam);
+                var eargs = new KeyPressEventArgs {
+                    KeyPressed = (Keys)vkCode,
+                    Modifiers = GetModifiers()
+                };
+                var modifiers = GetModifiers();
+                OnKeyPressed?.Invoke(this, eargs);
+            } catch (Exception ex) {
+                Diag.WriteLine($"[KeyboardHook] {ex.Message}");
             }
 
-            protected override void WndProc(ref Message m) {
-                if (m.Msg == WM_HOTKEY) {
-                    var e = new HotKeyEventArgs(m.LParam);
-                    OnHotKeyPressed(e);
-                }
+            return CallNextHookEx(_hookId, nCode, wParam, lParam);
+        }
 
-                base.WndProc(ref m);
+        public void Dispose() {
+            if (_hookId == IntPtr.Zero) return;
+            UnhookWindowsHookEx(_hookId);
+        }
+
+        public struct KeyPressEventArgs {
+            public Keys KeyPressed;
+            public Keys Modifiers;
+        }
+
+        /*
+        public class KeyPressedArgs : EventArgs {
+            public Key KeyPressed { get; }
+
+            public KeyPressedArgs(Key key) {
+                KeyPressed = key;
             }
-
-            protected override void SetVisibleCore(bool value) => base.SetVisibleCore(false);
-
-            private const int WM_HOTKEY = 0x312;
         }
-
-        private static int _id;
-    }
-
-
-    public class HotKeyEventArgs : EventArgs
-    {
-        public readonly Keys Key;
-        public readonly KeyModifiers Modifiers;
-
-        public HotKeyEventArgs(Keys key, KeyModifiers modifiers = KeyModifiers.NoRepeat) {
-            Key = key;
-            Modifiers = modifiers;
-        }
-
-        public HotKeyEventArgs(IntPtr hotKeyParam) {
-            var param = (uint)hotKeyParam.ToInt64();
-            Key = (Keys)((param & 0xffff0000) >> 16);
-            Modifiers = (KeyModifiers)(param & 0x0000ffff);
-        }
-    }
-
-    [Flags]
-    public enum KeyModifiers {
-        Alt = 1,
-        Control = 2,
-        Shift = 4,
-        Windows = 8,
-        NoRepeat = 0x4000
+        */
     }
 }

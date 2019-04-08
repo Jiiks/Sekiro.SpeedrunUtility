@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Windows.Forms;
 using Newtonsoft.Json;
+using SekiroSpeedrunUtil.structs;
 
 namespace SekiroSpeedrunUtil.ui {
     public partial class FormMain  {
@@ -15,7 +17,126 @@ namespace SekiroSpeedrunUtil.ui {
         private HotkeyStruct _forceQuit;
         private HotkeyStruct _flagToggle;
 
+        private KeyboardHook _keyboardHook;
+        private List<Hotkey> _hotkeys;
+
         public void InitHotkeys() {
+            Diag.WriteLine("Init Hotkeys");
+            mainTabControl.SelectedIndexChanged += (sender, args) => {
+                _hotkeysDisabled = mainTabControl.SelectedIndex == 1;
+            };
+            _keyboardHook = new KeyboardHook();
+            _keyboardHook.OnKeyPressed += OnKeyPressed;
+
+            _keyboardHook.Hook();
+            FormClosing += (sender, args) => _keyboardHook.Dispose();
+
+            var defaultHotkeys = JsonConvert.DeserializeObject<List<Hotkey>>(File.ReadAllText("hotkeys.json"));
+            _hotkeys = defaultHotkeys;
+            if (File.Exists($@"{Utils.DataDir()}/hotkeysv2.json")) {
+                var userHotkeys = JsonConvert.DeserializeObject<Hotkey[]>(File.ReadAllText($@"{Utils.DataDir()}/hotkeysv2.json"));
+                foreach (var userHotkey in userHotkeys) {
+                    var index = HotkeyIndex(userHotkey.Name);
+                    if (index < 0) {
+                        _hotkeys.Add(userHotkey);
+                        continue;
+                    }
+
+                    ReplaceHotkey(userHotkey.Name, userHotkey);
+                }
+            }
+
+            foreach (var hotkey in _hotkeys) {
+                switch (hotkey.Name) {
+                    case "SaveCurrentCoordinates":
+                        hotkeySaveCurrentCoordinates.InvokeIfRequired(() => {
+                            hotkeySaveCurrentCoordinates.Text = hotkey.HotkeyString;
+                        });
+                        break;
+                    case "TeleportToCoordinates":
+                        hotkeyTeleportToCoordinates.InvokeIfRequired(() => {
+                            hotkeyTeleportToCoordinates.Text = hotkey.HotkeyString;
+                        });
+                        break;
+                    case "LoadSave":
+                        hotkeyLoadSave.InvokeIfRequired(() => {
+                            hotkeyLoadSave.Text = hotkey.HotkeyString;
+                        });
+                        break;
+                    case "BackupSave":
+                        hotkeyBackupSave.InvokeIfRequired(() => {
+                            hotkeyBackupSave.Text = hotkey.HotkeyString;
+                        });
+                        break;
+                    case "LoadLastQuickSave":
+                        hotkeyLoadQuick.InvokeIfRequired(() => {
+                            hotkeyLoadQuick.Text = hotkey.HotkeyString;
+                        });
+                        break;
+                    case "ForceQuit":
+                        hotkeyQuit.InvokeIfRequired(() => {
+                            hotkeyQuit.Text = hotkey.HotkeyString;
+                        });
+                        break;
+                }
+            }
+
+            hotkeySaveCurrentCoordinates.KeyDown += HotkeySaveCurrentCoordinatesOnKeyDown;
+            hotkeyTeleportToCoordinates.KeyDown += HotkeyTeleportToCoordinatesOnKeyDown;
+            hotkeyBackupSave.KeyDown += HotkeyBackupSaveOnKeyDown;
+            hotkeyLoadSave.KeyDown += HotkeyLoadSaveOnKeyDown;
+            hotkeyLoadQuick.KeyDown += HotkeyLoadQuickOnKeyDown;
+            hotkeyQuit.KeyDown += HotkeyQuitOnKeyDown;
+        }
+
+        private Hotkey HotkeyByName(string name) {
+            return _hotkeys.Find(hk => hk.Name == name);
+        }
+
+        private int HotkeyIndex(string name) {
+            return _hotkeys.FindIndex(hk => hk.Name == name);
+        }
+
+        private void ReplaceHotkey(string name, Hotkey hotkey) {
+            var index = HotkeyIndex(name);
+            _hotkeys[index] = hotkey;
+            SaveHotkeys2();
+        }
+
+        private bool _hotkeysDisabled;
+        private void OnKeyPressed(object sender, KeyboardHook.KeyPressEventArgs e) {
+            if (_hotkeysDisabled) return;
+            foreach (var hotkey in _hotkeys) {
+                if(hotkey.Unset || hotkey.Key != e.KeyPressed || hotkey.Modifiers != e.Modifiers) continue;
+                HotkeyPressed(hotkey);
+                return;
+            }
+        }
+
+        private void HotkeyPressed(Hotkey hotkey) {
+            switch (hotkey.Name) {
+                case "SaveCurrentCoordinates":
+                    btnLoadCurrentCoords.InvokeIfRequired(() => btnLoadCurrentCoords.PerformClick());
+                    break;
+                case "TeleportToCoordinates":
+                    btnTeleportToCoordinates.InvokeIfRequired(() => btnTeleportToCoordinates.PerformClick());
+                    break;
+                case "BackupSave":
+                    QuickSave();
+                    break;
+                case "LoadSave":
+                    QuickLoad();
+                    break;
+                case "LoadLastQuickSave":
+                    QuickLoadQuick();
+                    break;
+                case "ForceQuit":
+                    ForceQuit();
+                    break;
+            }
+        }
+
+        public void InitHotkeys2() {
 
             var hotkeyFile = "hotkeys.json";
             if (File.Exists($"{Utils.DataDir()}/hotkeys.json")) hotkeyFile = $"{Utils.DataDir()}/hotkeys.json";
@@ -126,91 +247,84 @@ namespace SekiroSpeedrunUtil.ui {
         }
 
         private void HotkeyQuitOnKeyDown(object sender, KeyEventArgs e) {
-            var hotkey = ResolveHotkey(e);
+            const string hkName = "ForceQuit";
+            var hotkey = ResolveHotkeyNew(e, hkName);
             if (hotkey.Invalid) return;
-            if (hotkey.Clear) {
-                hotkeyQuit.Text = "";
-                metroLabel9.Focus();
-                return;
-            }
 
             hotkeyQuit.Text = hotkey.HotkeyString;
 
-            if (_loadSave.Id > 0) {
-                HotKeyManager.UnregisterHotKey(_forceQuit.Id);
+            ReplaceHotkey(hkName, hotkey);
+            metroLabel9.Focus();
+        }
+
+        private Hotkey ResolveHotkeyNew(KeyEventArgs e, string name) {
+            var converter = new KeysConverter();
+            var keyString = converter.ConvertToString(e.KeyCode);
+
+            switch (e.KeyCode) {
+                case Keys.Escape:
+                    return new Hotkey {
+                        HotkeyString = "Not Set",
+                        Name = name,
+                        Unset = true
+                    };
+                // Ignore modifier only
+                case Keys.Shift:
+                case Keys.ShiftKey:
+                case Keys.Control:
+                case Keys.ControlKey:
+                case Keys.Alt:
+                case Keys.Menu:
+                case Keys.LWin:
+                case Keys.RWin:
+                case Keys.LMenu:
+                case Keys.RMenu:
+                    return new Hotkey { Invalid = true };
             }
 
-            _forceQuit = hotkey;
-            _forceQuit.Name = "ForceQuit";
-            _forceQuit.Id = HotKeyManager.RegisterHotKey(hotkey.Key, hotkey.Modifiers);
-            metroLabel9.Focus();
-            SaveHotkeys();
+            if (e.Modifiers != Keys.None) {
+                keyString = $"{e.Modifiers}+{keyString}";
+            }
+            
+            return new Hotkey() {
+                Key = e.KeyCode,
+                Modifiers = e.Modifiers,
+                HotkeyString = keyString,
+                Name = name
+            };
         }
 
         private void HotkeyLoadSaveOnKeyDown(object sender, KeyEventArgs e) {
-            var hotkey = ResolveHotkey(e);
+            const string hkName = "LoadSave";
+            var hotkey = ResolveHotkeyNew(e, hkName);
             if (hotkey.Invalid) return;
-            if (hotkey.Clear) {
-                hotkeyLoadSave.Text = "";
-                metroLabel9.Focus();
-                return;
-            }
 
             hotkeyLoadSave.Text = hotkey.HotkeyString;
 
-            if (_loadSave.Id > 0) {
-                HotKeyManager.UnregisterHotKey(_loadSave.Id);
-            }
-
-            _loadSave = hotkey;
-            _loadSave.Name = "LoadSave";
-            _loadSave.Id = HotKeyManager.RegisterHotKey(hotkey.Key, hotkey.Modifiers);
+            ReplaceHotkey(hkName, hotkey);
             metroLabel9.Focus();
-            SaveHotkeys();
         }
 
         private void HotkeyLoadQuickOnKeyDown(object sender, KeyEventArgs e) {
-            var hotkey = ResolveHotkey(e);
+            const string hkName = "LoadLastQuickSave";
+            var hotkey = ResolveHotkeyNew(e, hkName);
             if (hotkey.Invalid) return;
-            if (hotkey.Clear) {
-                hotkeyLoadQuick.Text = "";
-                metroLabel9.Focus();
-                return;
-            }
 
             hotkeyLoadQuick.Text = hotkey.HotkeyString;
 
-            if (_loadQuick.Id > 0) {
-                HotKeyManager.UnregisterHotKey(_loadQuick.Id);
-            }
-
-            _loadQuick = hotkey;
-            _loadQuick.Name = "LoadLastQuickSave";
-            _loadQuick.Id = HotKeyManager.RegisterHotKey(hotkey.Key, hotkey.Modifiers);
+            ReplaceHotkey(hkName, hotkey);
             metroLabel9.Focus();
-            SaveHotkeys();
         }
 
         private void HotkeyBackupSaveOnKeyDown(object sender, KeyEventArgs e) {
-            var hotkey = ResolveHotkey(e);
+            const string hkName = "BackupSave";
+            var hotkey = ResolveHotkeyNew(e, hkName);
             if (hotkey.Invalid) return;
-            if (hotkey.Clear) {
-                hotkeyBackupSave.Text = "";
-                metroLabel9.Focus();
-                return;
-            }
 
             hotkeyBackupSave.Text = hotkey.HotkeyString;
 
-            if (_backupSave.Id > 0) {
-                HotKeyManager.UnregisterHotKey(_backupSave.Id);
-            }
-
-            _backupSave = hotkey;
-            _backupSave.Name = "BackupSave";
-            _backupSave.Id = HotKeyManager.RegisterHotKey(hotkey.Key, hotkey.Modifiers);
+            ReplaceHotkey(hkName, hotkey);
             metroLabel9.Focus();
-            SaveHotkeys();
         }
 
         private void SaveHotkeys() {
@@ -223,6 +337,10 @@ namespace SekiroSpeedrunUtil.ui {
                 _forceQuit,
                 _flagToggle
             }));
+        }
+
+        private void SaveHotkeys2() {
+            File.WriteAllText($"{Utils.DataDir()}/hotkeysv2.json", JsonConvert.SerializeObject(_hotkeys));
         }
 
         private void HotkeyPressed(object sender, HotKeyEventArgs e) {
@@ -278,47 +396,25 @@ namespace SekiroSpeedrunUtil.ui {
         }
 
         private void HotkeySaveCurrentCoordinatesOnKeyDown(object sender, KeyEventArgs e) {
-            var hotkey = ResolveHotkey(e);
+            const string hkName = "SaveCurrentCoordinates";
+            var hotkey = ResolveHotkeyNew(e, hkName);
             if (hotkey.Invalid) return;
-            if (hotkey.Clear) {
-                hotkeySaveCurrentCoordinates.Text = "";
-                metroLabel9.Focus();
-                return;
-            }
 
             hotkeySaveCurrentCoordinates.Text = hotkey.HotkeyString;
 
-            if (_saveCurrentCoordinates.Id > 0) {
-                HotKeyManager.UnregisterHotKey(_saveCurrentCoordinates.Id);
-            }
-
-            _saveCurrentCoordinates = hotkey;
-            _saveCurrentCoordinates.Name = "SaveCurrentCoordinates";
-            _saveCurrentCoordinates.Id = HotKeyManager.RegisterHotKey(hotkey.Key, hotkey.Modifiers);
+            ReplaceHotkey(hkName, hotkey);
             metroLabel9.Focus();
-            SaveHotkeys();
         }
 
         private void HotkeyTeleportToCoordinatesOnKeyDown(object sender, KeyEventArgs e) {
-            var hotkey = ResolveHotkey(e);
+            const string hkName = "TeleportToCoordinates";
+            var hotkey = ResolveHotkeyNew(e, hkName);
             if (hotkey.Invalid) return;
-            if (hotkey.Clear) {
-                hotkeyTeleportToCoordinates.Text = "";
-                metroLabel9.Focus();
-                return;
-            }
 
             hotkeyTeleportToCoordinates.Text = hotkey.HotkeyString;
 
-            if (_teleportToCoordinates.Id > 0) {
-                HotKeyManager.UnregisterHotKey(_teleportToCoordinates.Id);
-            }
-
-            _teleportToCoordinates = hotkey;
-            _teleportToCoordinates.Name = "TeleportToCoordinates";
-            _teleportToCoordinates.Id = HotKeyManager.RegisterHotKey(hotkey.Key, hotkey.Modifiers);
+            ReplaceHotkey(hkName, hotkey);
             metroLabel9.Focus();
-            SaveHotkeys();
         }
 
         private static HotkeyStruct ResolveHotkey(KeyEventArgs e) {

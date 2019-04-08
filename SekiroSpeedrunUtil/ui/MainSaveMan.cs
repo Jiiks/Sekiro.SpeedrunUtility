@@ -103,6 +103,9 @@ namespace SekiroSpeedrunUtil.ui {
                 var fPath = $@"{ProfileDir(true)}/{_smQuickLoadLastItem}";
                 File.Copy(fPath, $@"{_sekiroDir}/S0000.sl2", true);
                 Toast("Quickload Success!", Color.MediumAquamarine, Color.Black);
+                quitOnLoad.InvokeIfRequired(() => {
+                    if(quitOnLoad.Checked) ForceQuit();
+                });
             } catch (Exception ex) {
                 MetroMessageBox.Show(this,
                     ex.Message,
@@ -119,6 +122,9 @@ namespace SekiroSpeedrunUtil.ui {
                 var fPath = $@"{ProfileDir(true)}/{_smQuickLoadLastQuick}";
                 File.Copy(fPath, $@"{_sekiroDir}/S0000.sl2", true);
                 Toast("Quickload Success!", Color.MediumAquamarine, Color.Black);
+                quitOnLoad.InvokeIfRequired(() => {
+                    if (quitOnLoad.Checked) ForceQuit();
+                });
             } catch (Exception ex) {
                 MetroMessageBox.Show(this,
                     ex.Message,
@@ -159,6 +165,9 @@ namespace SekiroSpeedrunUtil.ui {
                 var fPath = $@"{ProfileDir()}/{smSavesList.SelectedItems[0].Text}";
                 File.Copy(fPath, $@"{_sekiroDir}/S0000.sl2", true);
                 Toast("Save Loaded!", Color.Black, Color.MediumAquamarine);
+                quitOnLoad.InvokeIfRequired(() => {
+                    if (quitOnLoad.Checked) ForceQuit();
+                });
             } catch (Exception ex) {
                 MetroMessageBox.Show(this,
                     ex.Message,

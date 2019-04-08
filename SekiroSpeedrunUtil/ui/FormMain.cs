@@ -111,8 +111,11 @@ namespace SekiroSpeedrunUtil.ui {
             _mouseDetector = new MouseDetector();
         }
 
+        private bool _toasting;
         private void Toast(string msg, Color background, Color foreground, SystemSound sound = null) {
             if (Height <= 100) return;
+            if (_toasting) return;
+            _toasting = true;
             if (cbToastSounds.Checked) {
                 if (sound == null) sound = SystemSounds.Asterisk;
                 sound.Play();
@@ -125,7 +128,7 @@ namespace SekiroSpeedrunUtil.ui {
                     toast.Show();
                     toast.SlideToDestination(430, 2, () => {
                         Thread.Sleep(3000);
-                        toast.SlideToDestination(520, 2, () => {});
+                        toast.SlideToDestination(520, 2, () => { _toasting = false;});
                     });
                 });
             });
